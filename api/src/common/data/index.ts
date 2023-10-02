@@ -1,1 +1,1 @@
-export * from './api.response';
+export * from './api-data.response';
