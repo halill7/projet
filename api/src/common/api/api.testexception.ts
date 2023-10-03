@@ -1,5 +1,5 @@
-import {ApiCodeResponse} from "@common/data/enum";
-import {ApiException} from "@common/exception";
+import {ApiCodeResponse} from "@common/api/index";
+import {ApiException} from "@common/api";
 
 export class TestException extends ApiException {
     constructor() {

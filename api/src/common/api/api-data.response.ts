@@ -1,4 +1,4 @@
-import {ApiCodeResponse} from 'common/data/enum';
+import {ApiCodeResponse} from '@common/api/index';
 export interface ApiDataResponse {
     result: boolean;
     code: ApiCodeResponse;
