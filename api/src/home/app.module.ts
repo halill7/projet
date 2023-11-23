@@ -6,7 +6,8 @@ import {configManager} from "@common/config/config.manager";
 import {SecurityModule} from "../security/security.module";
 import {APP_GUARD} from "@nestjs/core";
 import {JwtGuard} from "../security/jwt/jwt.guard";
-import {MemberModule} from "../member/member.module";
+import {MemberModule} from "../module/member/member.module";
+
 
 
 

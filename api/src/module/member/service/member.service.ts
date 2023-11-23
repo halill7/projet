@@ -1,9 +1,7 @@
-import { Member } from "@common/model/entity/member";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
-import {MemberCreatePayload} from "@common/model/payload/member-create.payload";
 import {Builder} from "builder-pattern";
-import {MemberUpdatePayload} from "@common/model/payload/member-update.payload";
+
 import {
     MemberCreateException,
     MemberDeleteException,
@@ -11,23 +9,22 @@ import {
     MemberNotFoundException, MemberUpdateException
 } from "../exception/member.exception";
 import {isNil} from "lodash";
+import {MemberCreatePayload} from "../payload/member-create.payload";
+import {MemberUpdatePayload} from "../payload/member-update.payload";
+import {Member} from "../entity/member";
 
 export class MemberService {constructor(@InjectRepository(Member) private readonly repository:
                                             Repository<Member>) {}
     async create(payload: MemberCreatePayload): Promise<Member> {
         try {
-            return await this.repository.save(Builder<Member>()
-                .firstname(payload.firstname)
-                .lastname(payload.lastname)
-                .mail(payload.mail)
-                .iban(payload.iban)
-                .phone(payload.phone)
-                /*.gender(payload.gender)*/
-                .birthdate(payload.birthdate)
-                .address(payload.address)
-                .active(payload.active)
-                .build()
-            );
+            const newMember = Object.assign(new Member(), Builder<Member>()
+                .firstname(payload.firstname).lastname(payload.lastname)
+                .mail(payload.mail).iban(payload.iban)
+                .phone(payload.phone)/*.gender(payload.gender)*/
+                .birthdate(payload.birthdate).address(payload.address)
+                .active(payload.active) .code_activation(payload.code_activation).build());
+            return await this.repository.save(newMember)
+            ;
         } catch (e) {
             throw new MemberCreateException();
         }

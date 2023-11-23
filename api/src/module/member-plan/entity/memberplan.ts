@@ -1,6 +1,7 @@
 import {Column, Entity, PrimaryColumn} from 'typeorm';
 import {ulid} from 'ulid';
-import {BaseEntity} from '@common/model/baseentity';
+import {BaseEntity} from "../../baseentity";
+
 
 @Entity()
 export class MemberPlan extends BaseEntity {

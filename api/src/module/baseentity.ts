@@ -1,5 +1,6 @@
 import {Exclude} from 'class-transformer';
-import {CreateDateColumn, UpdateDateColumn} from 'typeorm';
+import {CreateDateColumn, Entity, UpdateDateColumn} from 'typeorm';
+@Entity()
 export abstract class BaseEntity {
     @Exclude({ toPlainOnly: true })
     @CreateDateColumn()

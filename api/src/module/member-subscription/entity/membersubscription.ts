@@ -1,7 +1,8 @@
 import {Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn} from "typeorm";
 import {ulid} from "ulid";
-import {Member} from "@common/model/entity/member";
-import {MemberPlan} from "@common/model/entity/memberplan";
+import {Member} from "../../member/entity/member";
+import {MemberPlan} from "../../member-plan/entity/memberplan";
+
 
 @Entity()
 export class MemberSubscription{

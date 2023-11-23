@@ -1,6 +1,6 @@
 import {Column, Entity, PrimaryColumn} from 'typeorm';
-import {BaseEntity} from '../baseentity'
 import {ulid} from 'ulid';
+import {BaseEntity} from "../../baseentity";
 @Entity()
 export class Address extends BaseEntity {
     @PrimaryColumn('varchar', {length: 26, default: () => `'${ulid()}'`})

@@ -1,16 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import {MemberPlanCreatePayload} from "@common/model/payload/member-plan-create.payload";
-import {MemberPlanUpdatePayload} from "@common/model/payload/member-plan-update.payload";
-import {MemberPlan} from "@common/model/entity/memberplan";
 import {isNil} from "lodash";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
 import {Builder} from "builder-pattern";
+import {MemberPlanCreatePayload} from "../payload/member-plan-create.payload";
+import {MemberPlan} from "../entity/memberplan";
 import {
     MemberPlanCreateException,
-    MemberPlanDeleteException, MemberPlanListException, MemberPlanNotFoundException,
-    MemberPlanUpdateException
-} from "../exception/member-plan.exception";
+    MemberPlanDeleteException, MemberPlanListException,
+    MemberPlanNotFoundException, MemberPlanUpdateException
+} from "../../member/exception/member-plan.exception";
+import {MemberPlanUpdatePayload} from "../payload/member-plan-update.payload";
+
 
 @Injectable()
 export class MemberPlanService /*implements CrudService<MemberPlan, MemberPlanCreatePayload,

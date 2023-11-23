@@ -1,9 +1,10 @@
 import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
-import {MemberCreatePayload} from "@common/model/payload/member-create.payload";
 import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 import {MemberService} from "../service/member.service";
-import {Member} from "@common/model/entity/member";
-import {MemberUpdatePayload} from "@common/model/payload/member-update.payload";
+import {MemberCreatePayload} from "../payload/member-create.payload";
+import {Member} from "../entity/member";
+import {MemberUpdatePayload} from "../payload/member-update.payload";
+
 
 @ApiBearerAuth('access-token')
 @ApiTags('Membre')
