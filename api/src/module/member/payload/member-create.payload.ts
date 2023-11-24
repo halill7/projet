@@ -1,6 +1,6 @@
 import {IsArray, IsBoolean, IsDate, IsEmail, IsEnum, IsOptional, IsString, Length} from "class-validator";
-import {MemberSubscription} from "../../member-subscription/entity/membersubscription";
-import {Address} from "../../adress/entity/adresse";
+import {MemberSubscription} from "../../member-subscription/entity/membersubscription.entity";
+import {Address} from "../../adress/entity/adresse.entity";
 import {ApiProperty} from "@nestjs/swagger";
 
 

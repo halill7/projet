@@ -1,7 +1,7 @@
 import {Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn} from "typeorm";
 import {ulid} from "ulid";
-import {Member} from "../../member/entity/member";
-import {MemberPlan} from "../../member-plan/entity/memberplan";
+import {Member} from "../../member/entity/member.entity";
+import {MemberPlan} from "../../member-plan/entity/memberplan.entity";
 
 
 @Entity()

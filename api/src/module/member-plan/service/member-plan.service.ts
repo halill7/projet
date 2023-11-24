@@ -4,7 +4,7 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
 import {Builder} from "builder-pattern";
 import {MemberPlanCreatePayload} from "../payload/member-plan-create.payload";
-import {MemberPlan} from "../entity/memberplan";
+import {MemberPlan} from "../entity/memberplan.entity";
 import {
     MemberPlanCreateException,
     MemberPlanDeleteException, MemberPlanListException,

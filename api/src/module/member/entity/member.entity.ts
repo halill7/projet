@@ -1,8 +1,8 @@
 import {BeforeInsert, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn} from "typeorm";
 import {ulid} from "ulid";
 import {BaseEntity} from "../../baseentity";
-import {MemberSubscription} from "../../member-subscription/entity/membersubscription";
-import {Address} from "../../adress/entity/adresse";
+import {MemberSubscription} from "../../member-subscription/entity/membersubscription.entity";
+import {Address} from "../../adress/entity/adresse.entity";
 import {isNil} from "lodash";
 
 

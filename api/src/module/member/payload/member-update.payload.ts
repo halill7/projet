@@ -1,8 +1,8 @@
 import {IsArray, IsBoolean, IsDate, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, Length} from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
 import {ApiCodeResponse} from "@common/api";
-import {MemberSubscription} from "../../member-subscription/entity/membersubscription";
-import {Address} from "../../adress/entity/adresse";
+import {MemberSubscription} from "../../member-subscription/entity/membersubscription.entity";
+import {Address} from "../../adress/entity/adresse.entity";
 
 export class MemberUpdatePayload {
     @ApiProperty()

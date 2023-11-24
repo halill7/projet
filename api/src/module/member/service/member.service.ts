@@ -11,7 +11,7 @@ import {
 import {isNil} from "lodash";
 import {MemberCreatePayload} from "../payload/member-create.payload";
 import {MemberUpdatePayload} from "../payload/member-update.payload";
-import {Member} from "../entity/member";
+import {Member} from "../entity/member.entity";
 
 export class MemberService {constructor(@InjectRepository(Member) private readonly repository:
                                             Repository<Member>) {}

@@ -2,7 +2,7 @@ import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 import {MemberService} from "../service/member.service";
 import {MemberCreatePayload} from "../payload/member-create.payload";
-import {Member} from "../entity/member";
+import {Member} from "../entity/member.entity";
 import {MemberUpdatePayload} from "../payload/member-update.payload";
 
 
