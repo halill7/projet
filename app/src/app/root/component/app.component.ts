@@ -10,15 +10,16 @@ import {
   SecurityFallBackPageComponent
 } from "../../security/page/security-fall-back-page/security-fall-back-page.component";
 import {DashboardHomePageComponent} from "@dashboard";
-import {routes} from "../app.routes";
+import {routes} from "../app.routes"
 import {
   MemberDetailPageComponent
 } from "../../dashboard/feature/member/page/member-detail-page/member-detail-page.component";
+import {DashboardRouterComponent} from "../../dashboard/router/dashboard-router/dashboard-router.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TheAComponentComponent, TheBComponentComponent, TheCComponentComponent, SignInPageComponent, GlobalFallBackPageComponent, SecurityFallBackPageComponent, DashboardHomePageComponent,RouterModule, MemberDetailPageComponent],
+  imports: [CommonModule, RouterOutlet, TheAComponentComponent, TheBComponentComponent, TheCComponentComponent, SignInPageComponent, GlobalFallBackPageComponent, SecurityFallBackPageComponent, DashboardHomePageComponent, MemberDetailPageComponent,DashboardRouterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
