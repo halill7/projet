@@ -8,6 +8,7 @@ export enum ApiCodeResponse {
     SIGNUP_ERROR = 'api.security.error.signup',
     TOKEN_GEN_ERROR = 'api.security.error.token-gen',
     NO_TOKEN_FOUNDED = 'api.security.error.no-token-found',
+    COMMON_SUCCESS = 'SUCCESS_IS_PERMANENT',
 
     // Exeception for member payload
     MEMBER_PAYLOAD_ACTIVE_INVALID = 'api.security.error.no-token-found',
