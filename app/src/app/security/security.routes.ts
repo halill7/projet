@@ -5,13 +5,19 @@ import {dashboardRoutes} from "../dashboard/dashboard.routes";
 export const securityRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'signin',
-    pathMatch: 'full'
+    loadComponent: () =>
+    import('./router/security-router/security-router.component').then(c => c.SecurityRouterComponent),
+
   },
   {
     path: 'signin',
     loadComponent: () =>
       import('./page/sign-in-page/sign-in-page.component').then(c => c.SignInPageComponent),
+  },
+  {
+    path: 'signup',
+    loadComponent: () =>
+      import('./page/sign-up-page/sign-up-page.component').then(c => c.SignUpPageComponent),
   },
   {
     path: '**',

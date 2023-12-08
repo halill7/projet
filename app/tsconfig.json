@@ -6,7 +6,8 @@
     "paths": {
       "@security": ["./app/security/index.ts"],
       "@root": ["./app/root/index.ts"],
-      "@dashboard" : ["./app/dashboard/index.ts"]
+      "@dashboard" : ["./app/dashboard/index.ts"],
+      "@apiUrl" : ["./app/shared/enum/index.ts"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

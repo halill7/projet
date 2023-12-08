@@ -1,11 +1,10 @@
-<div id="sign-in-wrapper">
-  <span class="title">{{title}}</span>
-  <span class="sub-title">{{subTitle}}</span>
-  <section id="content">
-    <app-input [(title)]="title"></app-input>
-  </section>
-  <div class="button-area">
-    <button (click)="signIn()">se connecter</button>
+<div class="wrapper">
+  <div class="form" [formGroup]="formGroup">
+    <label>Username</label>
+    <input type="text" formControlName='username' autocomplete="new-password" placeholder="Your username">
+    <label>Password</label>
+    <input type="password" formControlName='password' placeholder="Your password">
+    <button [disabled]="formGroup.invalid" (click)="save()">Connexion</button>
   </div>
-  <app-input (coucou)="coucouHandler($event)" [(title)]="title"></app-input>
+
 </div>
