@@ -10,6 +10,8 @@ import {ConfigKey} from "@common/config/enum";
 
 const bootstrap = async () => {
   const app = await NestFactory.create(AppModule);
+  // Allow requests from all origins
+  app.enableCors();
   app.setGlobalPrefix(configManager.getValue(ConfigKey.APP_BASE_URL));
   swaggerConfiguration.config(app);
   app.useGlobalFilters(new HttpExceptionFilter());

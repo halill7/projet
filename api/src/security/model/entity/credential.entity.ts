@@ -1,8 +1,8 @@
-import {Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn} from 'typeorm';
+import {BeforeInsert, Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn} from 'typeorm';
 import {ulid} from "ulid";
 @Entity()
 export class Credential {
-    @PrimaryColumn('varchar', { length:26, default: () => `'${ulid()}'` })
+    @PrimaryColumn('varchar', {length: 26, default: () => `'${ulid()}'`})
     credential_id: string;
     @Column({nullable: false, unique: true})
     username: string;
@@ -22,4 +22,5 @@ export class Credential {
     created: Date;
     @CreateDateColumn()
     updated: Date;
+
 }

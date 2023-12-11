@@ -17,7 +17,7 @@ export class SignInService {
 
 
   public signUp(payload: SignupPayload):Observable<any> {
-    return of(payload);
+    return this.api.post(ApiURI.SIGN_UP, payload);
   }
 
   public me():Observable<any> {

@@ -1,10 +1,1 @@
-<div class="wrapper">
-  <div class="form" [formGroup]="formGroup">
-    <label>Username</label>
-    <input type="text" formControlName='username' autocomplete="new-password" placeholder="Your username">
-    <label>Password</label>
-    <input type="password" formControlName='password' placeholder="Your password">
-    <button [disabled]="formGroup.invalid" (click)="save()">Connexion</button>
-  </div>
-
-</div>
+<app-sign-in-up-form [config]="config"></app-sign-in-up-form>

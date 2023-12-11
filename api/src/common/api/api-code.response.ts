@@ -10,7 +10,7 @@ export enum ApiCodeResponse {
     NO_TOKEN_FOUNDED = 'api.security.error.no-token-found',
     COMMON_SUCCESS = 'SUCCESS_IS_PERMANENT',
 
-    // Exeception for member payload
+    // Exception for member payload
     MEMBER_PAYLOAD_ACTIVE_INVALID = 'api.security.error.no-token-found',
     MEMBER_PAYLOAD_SUBSCRIPTION_NOT_VALID = 'api.security.error.no-token-found',
     MEMBER_PAYLOAD_ACTIVATION_CODE_LENGTH_ERROR = 'api.security.error.no-token-found',
