@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="title">{{title}}</div>
+  <div class="error" *ngIf="error$().length">{{error$()}}</div>
+  <div class="form" [formGroup]="config.formGroup">
+    <ng-container *ngFor="let field of config.fields">
+      <label>{{field.label}}</label>
+      <input [type]="field.inputType" [formControl]='field.control' autocomplete="new-password" [placeholder]="field.placeHolder">
+
+
+
+    </ng-container>
+
+    <button  (click)="save()">{{btnLabel}}</button>
+  </div>
+{{config.formGroup.value|json}}
+</div>
