@@ -1,9 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, RouterOutlet} from '@angular/router';
-import {TheAComponentComponent} from "../../the-acomponent/the-acomponent.component";
-import {TheBComponentComponent} from "../../the-bcomponent/the-bcomponent.component";
-import {TheCComponentComponent} from "../../the-ccomponent/the-ccomponent.component";
 import {SignInPageComponent} from "@security";
 import {GlobalFallBackPageComponent} from "../../shared/routes/global-fall-back-page/global-fall-back-page.component";
 import {
@@ -15,14 +12,16 @@ import {
   MemberDetailPageComponent
 } from "../../dashboard/feature/member/page/member-detail-page/member-detail-page.component";
 import {DashboardRouterComponent} from "../../dashboard/router/dashboard-router/dashboard-router.component";
+import {ApiService} from "../../shared/api/service/api.service";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TheAComponentComponent, TheBComponentComponent, TheCComponentComponent, SignInPageComponent, GlobalFallBackPageComponent, SecurityFallBackPageComponent, DashboardHomePageComponent, MemberDetailPageComponent,DashboardRouterComponent],
+  imports: [CommonModule, RouterOutlet, SignInPageComponent, GlobalFallBackPageComponent, SecurityFallBackPageComponent, DashboardHomePageComponent, MemberDetailPageComponent,DashboardRouterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'app';
+
 }

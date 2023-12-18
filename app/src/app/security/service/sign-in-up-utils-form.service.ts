@@ -61,18 +61,18 @@ export class SignInUpUtilsFormService {
 
   public static getPasswordField(formGroup:FormGroup): SignInUpField {
     return {
-      label:'Your confirmation',
+      label:'Your password',
       inputType: 'password',
-      placeHolder: 'Your confirmation',
+      placeHolder: 'Your password',
       control: SignInUpUtilsFormService.getFormControl(formGroup, formFieldEnum.PASSWORD)
     }
   }
 
   public static getConfirmationField(formGroup:FormGroup): SignInUpField {
     return {
-      label:'Your password',
+      label:'Your confirmation',
       inputType: 'password',
-      placeHolder: 'Your password',
+      placeHolder: 'Your confirmation',
       control: SignInUpUtilsFormService.getFormControl(formGroup, formFieldEnum.CONFIRMATION)
     }
   }

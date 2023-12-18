@@ -4,11 +4,14 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SignInUpFormConfig} from "../../data";
 import {SignInUpFormType} from "../../data/enum";
 import {Observable, tap} from "rxjs";
-import {ApiResponse} from "../../../shared/api/api.response";
 import {SignInService} from "../../service/sign-in/sign-in.service";
 import {Payload} from "../../../shared/core/type";
 import {SignInPayload} from "../../data/payload";
 import {SignupPayload} from "../../data/payload/sign-up.payload";
+import {ApiResponse} from "../../../shared/api/service/api.response";
+import {DashboardRouterComponent} from "../../../dashboard/router/dashboard-router/dashboard-router.component";
+import {AppNode} from "../../../shared/routes/enum/node.enum";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-in-up-form',
@@ -19,6 +22,8 @@ import {SignupPayload} from "../../data/payload/sign-up.payload";
 })
 export class SignInUpFormComponent implements OnInit{
   @Input({required:true}) config!: SignInUpFormConfig;
+  router: Router = inject(Router);
+
   private readonly signInService : SignInService = inject(SignInService);
   title: string = 'Connexion';
   btnLabel: string = 'Se Connecter';
@@ -47,11 +52,20 @@ export class SignInUpFormComponent implements OnInit{
 
       )).subscribe((data:ApiResponse) => {
         console.log('apiResponse', data);
+        if (data.result) {
+          if(this.config.type === SignInUpFormType.SIGN_IN) {
+            this.router.navigate([AppNode.AUTHENTICATED]).then();
+          } else {
+            this.router.navigate([AppNode.SIGN_IN]).then();
+          }
+          console.log("OK")
+        }
       })
     } else {
       this.error$.set('Formulaire non valide')
     }
   }
+
 
 
 

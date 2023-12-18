@@ -2,8 +2,8 @@ import {inject, Injectable} from '@angular/core';
 import {SignInPayload} from "../../data/payload";
 import {Observable, of} from "rxjs";
 import {SignupPayload} from "../../data/payload/sign-up.payload";
-import {ApiService} from "../../../shared/api/api.service";
 import {ApiURI} from "../../../shared/api/enum";
+import {ApiService} from "../../../shared/api/service/api.service";
 
 @Injectable({
   providedIn: 'root'

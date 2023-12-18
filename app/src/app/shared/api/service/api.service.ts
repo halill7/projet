@@ -1,11 +1,11 @@
 import {inject, Injectable} from '@angular/core';
 import {catchError, map, Observable, of} from "rxjs";
-import {Payload} from "../core/type";
-import {environment} from "../../../environnements/environment.dev";
+import {Payload} from "../../core/type";
+import {environment} from "../../../../environnements/environment.dev";
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {TokenService} from "./model/token.service";
+import {TokenService} from "../model/token.service";
 import {ApiResponse} from "./api.response";
-import {ApiURI} from "./enum";
+import {ApiURI} from "../enum";
 
 @Injectable({
   providedIn: 'root'
