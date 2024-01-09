@@ -1,0 +1,64 @@
+/* dashboard.component.css */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  background-color: #4267B2;
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+}
+
+.content-container {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+
+nav {
+  background-color: #333;
+  color: #fff;
+  padding: 1em;
+  width: 200px; /* Ajustez la largeur selon vos besoins */
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin-bottom: 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+nav a:hover {
+  background-color: #4267B2;
+}
+
+.main-content {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+footer {
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 1em;
+}

@@ -12,6 +12,10 @@ import {ApiResponse} from "../../../shared/api/service/api.response";
 import {DashboardRouterComponent} from "../../../dashboard/router/dashboard-router/dashboard-router.component";
 import {AppNode} from "../../../shared/routes/enum/node.enum";
 import {Router} from "@angular/router";
+import {ApiURI} from "../../../shared/api/enum";
+import {ApiService} from "../../../shared/api/service/api.service";
+import {Token} from "../../../shared/api/model/token.interface";
+import {TokenService} from "../../../shared/api/model/token.service";
 
 @Component({
   selector: 'app-sign-in-up-form',
@@ -23,6 +27,8 @@ import {Router} from "@angular/router";
 export class SignInUpFormComponent implements OnInit{
   @Input({required:true}) config!: SignInUpFormConfig;
   router: Router = inject(Router);
+  private readonly api: ApiService = inject(ApiService);
+  private readonly tokenService: TokenService = inject(TokenService);
 
   private readonly signInService : SignInService = inject(SignInService);
   title: string = 'Connexion';
@@ -66,6 +72,21 @@ export class SignInUpFormComponent implements OnInit{
     }
   }
 
+
+
+
+  /*private handleAuthenticatedChange(token: Token): void {
+    if (!token.isEmpty) {
+      this.me();
+    } else {
+      this.router.navigate([AppNode.REDIRECT_TO_PUBLIC]).then();
+    }
+  }*/
+
+
+  logOut(): void {
+    this.tokenService.setToken({token: '', refreshToken: '', isEmpty: true});
+  }
 
 
 

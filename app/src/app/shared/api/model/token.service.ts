@@ -8,6 +8,7 @@ import {isNil} from "lodash";
 })
 export class TokenService{
   token: WritableSignal<Token> = signal(this.getToken());
+
   private readonly tokenSaveHandler: EffectRef = effect(() =>
     this.handleTokenChange(this.token()));
   public setToken(token: Token): void {
@@ -25,11 +26,18 @@ export class TokenService{
       localStorage.removeItem(environment.TOKEN_KEY);
     }
   }
-  private getToken(): Token {
+  public getToken(): Token {
     const str = localStorage.getItem(environment.TOKEN_KEY);
     return !isNil(str) ? JSON.parse(str) as Token : this.getEmpty();
   }
   private getEmpty(): Token {
     return {token: '', refreshToken: '', isEmpty: true};
   }
+
+  public isTokenEmpty(): boolean {
+    const tokenValue = this.token();
+    return !this.token;
+  }
+
+
 }

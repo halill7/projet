@@ -4,6 +4,7 @@ import {Observable, of} from "rxjs";
 import {SignupPayload} from "../../data/payload/sign-up.payload";
 import {ApiURI} from "../../../shared/api/enum";
 import {ApiService} from "../../../shared/api/service/api.service";
+import {RefreshPayload} from "../../data/payload/refresh.payload";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class SignInService {
     return this.api.post(ApiURI.SIGN_UP, payload);
   }
 
-  public me():Observable<any> {
-    return of(null);
+  public refreshToken(payload: RefreshPayload):Observable<any> {
+    return this.api.post(ApiURI.ME, payload);
   }
 }

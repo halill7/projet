@@ -32,6 +32,54 @@ export class SecurityService {
         throw new UserNotFoundException();
     }
 
+    async detailN(mail: string): Promise<Credential> {
+        const result = await this.repository.findOneBy({mail: mail});
+        if (!(isNil(result))) {
+            return result;
+        }
+        throw new UserNotFoundException();
+    }
+
+
+
+
+
+    /*async detailS(email: string): Promise<string> {
+        try {
+            // Forcez l'e-mail à une valeur connue pour le test
+            email = "testtest";
+
+            // Imprimez la requête SQL générée
+            console.log('SQL Query:', this.repository.createQueryBuilder("credential").select("credential.credential_id", "id").where("credential.username = :email", { email }).getSql());
+
+            // Exécutez la requête
+            const result = await this.repository
+                .createQueryBuilder("credential")
+                .select("credential.credential_id", "id")
+                .where("credential.username = :email", { email })
+                .getOne();
+
+            // Affichez le résultat dans les logs
+            console.log('Result:', result);
+
+            // Si le résultat est trouvé, retournez l'ID
+            if (result) {
+                return result.credential_id;
+            }
+
+            // Si aucun résultat n'est trouvé, lancez l'exception
+            throw new UserNotFoundException();
+        } catch (error) {
+            // Capturez et imprimez toute erreur non prévue
+            console.error('Error:', error);
+            throw error;
+        }
+    }*/
+
+
+
+
+
     async signIn(payload: SignInPayload,isAdmin:boolean): Promise<Token | null> {
         let result = null;
         if (payload.socialLogin) {

@@ -1,0 +1,107 @@
+.top_box{
+  width: 100%;
+  height: 260px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+}
+
+.top_box .my_story_card{
+  width: 135px;
+  height: 250px;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  cursor: pointer;
+
+}
+
+.top_box .my_story_card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.top_box .my_story_card .story_upload{
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  position: relative;
+  bottom: 50px;
+  cursor: pointer;
+}
+
+.top_box .my_story_card .story_upload img{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  margin: 0 auto;
+  position: relative;
+  bottom: 15px;
+  border-radius: 50%;
+}
+
+.top_box .my_story_card .story_upload .story_tag{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  bottom: 20px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.top_box .story_card{
+  width: 135px;
+  height: 250px;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.top_box .story_card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.top_box .story_card .story_profile{
+  position: relative;
+  bottom: 240px;
+  margin-left: 10px;
+}
+
+.top_box .story_card .story_profile img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #45abff;
+}
+
+.top_box .story_card .story_profile .cricle{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #27cc37;
+  border: 2px solid #fff;
+  position: relative;
+  bottom: 15px;
+  left: 25px;
+}
+
+.top_box .story_card .story_name{
+  position: relative;
+  bottom: 100px;
+  padding: 0 10px;
+}
+
+.top_box .story_card .story_name .name{
+  font-weight: bold;
+  color: #fff;
+  font-size: 14px;
+}

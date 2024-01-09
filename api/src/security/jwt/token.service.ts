@@ -2,13 +2,14 @@ import {Injectable, Logger} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import {JwtService} from '@nestjs/jwt';
-import {TokenExpiredException, TokenGenerationException} from "../security.exception";
+import {TokenExpiredException, TokenGenerationException, UserNotFoundException} from "../security.exception";
 import {ConfigKey} from "@common/config/enum/configkey";
 import {configManager} from "@common/config/config.manager";
 import {RefreshTokenPayload} from "../payload/refresh.payload";
 import {Builder} from "builder-pattern";
 import {Credential} from "../model/entity/credential.entity";
 import {Token} from "../model/entity/token.entity";
+import {isNil} from "lodash";
 @Injectable()
 export class TokenService {
     private readonly logger = new Logger(TokenService.name);
@@ -44,6 +45,9 @@ export class TokenService {
             throw new TokenGenerationException();
         }
     }
+
+
+
 
     async deleteFor(credential: Credential): Promise<void> {
         await this.repository.delete({credential})
