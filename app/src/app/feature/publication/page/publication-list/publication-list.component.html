@@ -4,7 +4,13 @@
 
 <app-publication-form></app-publication-form>
 
-
+<div>
+  <ng-container *ngFor="let item of publicationService.list$()">
+    {{ publicationService.list$() | json }}
+  </ng-container>
+  <!-- Ajoutez d'autres champs que vous avez dans votre objet PublicationPayload -->
+  <hr>
+</div>
 
 <div class="friends_post">
 
@@ -90,4 +96,5 @@
   </div>
 
 </div>
+
 

@@ -4,7 +4,9 @@ import {Like} from "../entity/like.entity";
 import {LikeUpdatePayload} from "../payload/like-update.payload";
 import {LikeCreatePayload} from "../payload/like-create.payload";
 import {LikeService} from "../service/like.service";
+import {User} from "@common/config/metadata/user.metadata";
 
+import {Credential} from "../../../security/model/entity/credential.entity";
 @ApiBearerAuth('access-token')
 @ApiTags('Like')
 @Controller('like')
@@ -12,8 +14,8 @@ export class LikeController {
     constructor(private readonly service: LikeService) {
     }
     @Post('create')
-    create(@Body() payload: LikeCreatePayload): Promise<Like> {
-        return this.service.create(payload);
+    create(@User() user: Credential, @Body() payload: LikeCreatePayload): Promise<Like> {
+        return this.service.create(user,payload);
     }
     @Delete('delete/:id')
     delete(@Param('id') id: string): Promise<void> {

@@ -1,12 +1,17 @@
 import {Component, inject} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {PublicationFormComponent} from "../../component/publication-form/publication-form.component";
-import { faBell, faBullhorn, faScissors, faVideo, faMagnifyingGlass, faHouse,
+import {
+  faBell, faBullhorn, faScissors, faVideo, faMagnifyingGlass, faHouse,
   faTv, faStore, faUser, faListUl, faMessage, faMoon, faFaceGrin, faImage, faUserGroup,
-  faEllipsis, faThumbsUp, faShare, faFaceSmile, faMagnifyingGlassArrowRight, faCamera, faNoteSticky} from "@fortawesome/free-solid-svg-icons";
+  faEllipsis, faThumbsUp, faShare, faFaceSmile, faMagnifyingGlassArrowRight, faCamera, faNoteSticky
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {PublicationService} from "../../../service/publication.service";
 import {StoryComponent} from "../story/story.component";
+import {Observable} from "rxjs";
+import {PublicationPayload} from "../../../data/payload/publication.payload";
+
 @Component({
   selector: 'app-publication-list',
   standalone: true,
@@ -15,6 +20,7 @@ import {StoryComponent} from "../story/story.component";
   styleUrls: ['./publication-list.component.scss']
 })
 export class PublicationListComponent {
+  readonly publicationService: PublicationService = inject(PublicationService);
   faBell = faBell;
   faBullhorn = faBullhorn;
   faScissors = faScissors;
@@ -37,15 +43,24 @@ export class PublicationListComponent {
   faCamera = faCamera;
   faNoteSticky = faNoteSticky;
   faMagnifyingGlassArrowRight = faMagnifyingGlassArrowRight;
+
   //private publication$: Observable<any>;
 
 
+  constructor() {
+  }
 
-  /**ngOnInit(): void {
-    this.publication$ = this.publicationService.publicationGet();
-  }**/
-  private readonly publicationService : PublicationService = inject(PublicationService);
+  publicationData$: Observable<any> | undefined;
 
+  ngOnInit(): void {
+    this.publicationService.publicationGet();
+  }
 
 
 }
+
+
+
+
+
+

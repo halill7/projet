@@ -51,7 +51,6 @@ export class PublicationFormComponent {
   error$:WritableSignal<string> = signal('')
 
   private readonly publicationService : PublicationService = inject(PublicationService);
-  private readonly http: HttpClient = inject(HttpClient);
   payload: PublicationPayload[] = [];
 
   save(): void {
@@ -64,40 +63,11 @@ export class PublicationFormComponent {
       contenu: "zadaz",
       type_de_publication: "test"
     };
-
-    const obs: Observable<ApiResponse> = this.publicationService.publicationPost(payload);
-
-    obs.pipe(
-      tap((apiResponse: ApiResponse) => {
-        if (!apiResponse.result) {
-          this.error$.set(apiResponse.code);
-        }
-      }),
-      map((data: ApiResponse) => payload)
-    ).subscribe({
-      next: (payload) => {
-        console.log('subscribe - success', payload);
-        this.payload.push();
-        this.changeDetectorRef.detectChanges();
-      },
-      error: (error) => {
-        console.error('subscribe - error', error);
-      },
-      complete: () => {
-        console.log('subscribe - complete');
-      }
-    });
+  console.log('payload',payload);
+   this.publicationService.publicationPost(payload).subscribe();
 
 
   }
-
-
-
-
-
-
-
-
 }
 
 

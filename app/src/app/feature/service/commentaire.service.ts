@@ -10,12 +10,12 @@ export class CommentaireService {
   private readonly api:ApiService = inject(ApiService);
   private readonly http: HttpClient = inject(HttpClient);
   public publicationPost(payload: PublicationPayload):Observable<any> {
-    return this.api.post(ApiURI.PUBLICATION, payload);
+    return this.api.post(ApiURI.COMMENTAIRE, payload);
   }
 
 
 
-  addPubli(publi: PublicationPayload): Observable<PublicationPayload> {
+  /**addPubli(publi: PublicationPayload): Observable<PublicationPayload> {
     return this.http.post<PublicationPayload>("http://localhost:2023/api/publication/create", publi)
       .pipe(
         catchError(this.handleError)
@@ -34,6 +34,6 @@ export class CommentaireService {
     }
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
-  }
+  }**/
 
 }

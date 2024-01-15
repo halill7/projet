@@ -5,6 +5,10 @@ import {Publication} from "../entity/publication.entity";
 import {PublicationCreatePayload} from "../payload/publication-create.payload";
 import {PublicationUpdatePayload} from "../payload/publication-update.payload";
 import {PublicationService} from "../service/publication.service";
+import {User} from "@common/config/metadata/user.metadata";
+import {Credential} from "../../../security/model/entity/credential.entity";
+import {LikeCreatePayload} from "../../like/payload/like-create.payload";
+import {Like} from "../../like/entity/like.entity";
 
 @ApiBearerAuth('access-token')
 @ApiTags('Publication')
@@ -13,9 +17,11 @@ export class PublicationController {
     constructor(private readonly service: PublicationService) {
     }
     @Post('create')
-    create(@Body() payload: PublicationCreatePayload): Promise<Publication> {
-        return this.service.create(payload);
+    create(@User() user: Credential, @Body() payload: PublicationCreatePayload): Promise<Publication> {
+        return this.service.create(user, payload);
     }
+
+
     @Delete('delete/:id')
     delete(@Param('id') id: string): Promise<void> {
         return this.service.delete(id);

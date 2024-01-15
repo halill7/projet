@@ -12,14 +12,14 @@ import {LikeUpdatePayload} from "../payload/like-update.payload";
 import {SecurityController} from "../../../security/security.controller";
 import {Credential} from "../../../security/model/entity/credential.entity";
 import {User} from "@common/config/metadata/user.metadata";
-
-export class LikeService {constructor(@InjectRepository(Like) private readonly repository:
-                                                 Repository<Like>, private readonly securityService: TokenService,
-                                      private readonly securityController:SecurityController, private readonly user: Credential) {}
-    async create(payload: LikeCreatePayload): Promise<Like> {
+import {Injectable} from "@nestjs/common";
+@Injectable()
+export class LikeService {
+    constructor(@InjectRepository(Like) private readonly repository:Repository<Like>) {}
+    async create(user:Credential,payload: LikeCreatePayload): Promise<Like> {
         try {
 
-            return await this.repository.save(Builder<Like>().credential_id(this.user.credential_id).id_publication(payload.id_publication)
+            return await this.repository.save(Builder<Like>().credential_id(user.credential_id).id_publication(payload.id_publication)
                 .date_du_like(payload.date_du_like).id_commentaire(payload.id_commentaire)
                 .build())
                 ;
