@@ -3,15 +3,18 @@
   <div class="my_post">
 
 
-    <!-- Dans votre fichier HTML du composant -->
+    <!--  -->
     <div class="container">
       <div class="my_post">
 
         <div class="post_top">
           <img src="assets/image/user.jpg" alt="User Image">
-          <input type="text" placeholder="">
 
+          <ng-container *ngFor="let field of config.fields">
+          <input [type]="field.inputType" [placeholder]="field.placeHolder">
+          </ng-container>
           <button (click)="save()">Post</button>
+
           <br>
         </div>
       </div>
@@ -41,4 +44,11 @@
     </div>
   </div>
 </div>
+
+
+<ng-container *ngIf="profilService.Detail$() as profile">
+  <span id="user-name">{{profile.credential_id}}</span>
+
+
+</ng-container>
 

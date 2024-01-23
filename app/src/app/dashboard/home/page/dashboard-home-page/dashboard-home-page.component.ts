@@ -21,12 +21,13 @@ import {
 import {
   PublicationListComponent
 } from "../../../../feature/publication/page/publication-list/publication-list.component";
+import {HomebarComponent} from "../homebar/homebar.component";
 
 
 @Component({
   selector: 'app-dashboard-home-page',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, RouterOutlet, RecentActivityComponent, YourPageComponent, PublicationFormComponent, PublicationListComponent],
+  imports: [CommonModule, FontAwesomeModule, RouterOutlet, RecentActivityComponent, YourPageComponent, PublicationFormComponent, PublicationListComponent, HomebarComponent],
   templateUrl: './dashboard-home-page.component.html',
   styleUrls: ['./dashboard-home-page.component.scss']
 })

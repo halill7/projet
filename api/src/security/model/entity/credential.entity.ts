@@ -1,5 +1,15 @@
-import {BeforeInsert, Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn} from 'typeorm';
+import {
+    BeforeInsert,
+    Column,
+    CreateDateColumn,
+    Entity,
+    JoinColumn,
+    OneToOne,
+    PrimaryColumn,
+    PrimaryGeneratedColumn
+} from 'typeorm';
 import {ulid} from "ulid";
+import {Profil} from "../../../module/profil/entity/profil.entity";
 @Entity()
 export class Credential {
     @PrimaryGeneratedColumn("uuid")
@@ -24,6 +34,10 @@ export class Credential {
     updated: Date;
 
 
-
+    /*@OneToOne(() => Profil, profil => profil.credential_id, { eager: false })
+    profil: Profil;*/
+    @OneToOne(() => Profil, {cascade: true, eager: true})
+    @JoinColumn({referencedColumnName: 'id_profil', name: 'id_profil_fk'})
+    profil: Profil;
 
 }

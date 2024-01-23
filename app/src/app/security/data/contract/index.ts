@@ -1,5 +1,5 @@
 import {FormControl, FormGroup} from "@angular/forms";
-import {SignInUpFormType} from "../enum";
+import {PublicationFormType, SignInUpFormType} from "../enum";
 
 export interface SignInUpFormConfig {
   formGroup: FormGroup;
@@ -10,6 +10,18 @@ export interface SignInUpFormConfig {
 
 export interface SignInUpField {
   label: string;
+  placeHolder: string;
+  inputType: string;
+  control: FormControl;
+}
+
+export interface PostPublication {
+  formGroup: FormGroup;
+  type: PublicationFormType;
+  fields : PublicationField[];
+}
+
+export interface PublicationField {
   placeHolder: string;
   inputType: string;
   control: FormControl;

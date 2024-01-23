@@ -7,6 +7,7 @@ import {ApiService} from "../../../../shared/api/service/api.service";
 import {TokenService} from "../../../../shared/api/model/token.service";
 import {Router} from "@angular/router";
 import {AppNode} from "../../../../shared/routes/enum/node.enum";
+import {ProfilService} from "../../service/profil.service";
 
 @Component({
   selector: 'app-recent-activity',
@@ -45,9 +46,11 @@ export class RecentActivityComponent {
   private readonly api: ApiService = inject(ApiService);
   private readonly tokenService: TokenService = inject(TokenService);
   private readonly router: Router = inject(Router);
+  readonly profilService: ProfilService = inject(ProfilService);
 
 
   //
+
 
   logOut(): void {
     console.log('Fonction logOut() appelée');

@@ -7,5 +7,6 @@ export enum ApiURI{
   PUBLICATION_LIST = 'publication/list',
   LIKE = 'like/create',
   COMMENTAIRE = 'commentaire/create',
-  PROFIL = 'profil/update'
+  PROFIL = 'profil/update',
+  PROFIL_DETAIL = 'profil/detail-profil'
 }

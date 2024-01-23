@@ -7,6 +7,7 @@ import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
 import {User} from "@common/config/metadata/user.metadata";
 import {Public} from "@common/config/metadata/public.metadata";
 import {Credential} from "./model/entity/credential.entity";
+import {Profil} from "../module/profil/entity/profil.entity";
 
 @ApiBearerAuth('access-token')
 @ApiTags('Account')
@@ -37,6 +38,12 @@ export class SecurityController {
     @Get('me')
     public me(@User() user: Credential) {
         return user;
+    }
+
+
+    @Get('detail/:credential_id')
+    detail(@Param('id') id: string): Promise<Credential> {
+        return this.service.detail(id);
     }
     @Delete('delete/:id')
     public delete(@Param('id') id: string) {

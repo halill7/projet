@@ -10,3 +10,7 @@ export enum SignInUpFormType {
   SIGN_IN = 'SIGN_IN',
   SIGN_UP = 'SIGN_UP'
 }
+
+export enum PublicationFormType {
+  CONTENU = 'Explain yourself'
+}

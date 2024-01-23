@@ -1,20 +1,12 @@
-import {ChangeDetectorRef, Component, inject, signal, WritableSignal} from '@angular/core';
+import {Component, inject, Input, signal, WritableSignal} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { faBell, faBullhorn, faScissors, faVideo, faMagnifyingGlass, faHouse,
-  faTv, faStore, faUser, faListUl, faMessage, faMoon, faFaceGrin, faImage, faUserGroup,
-  faEllipsis, faThumbsUp, faShare, faFaceSmile, faMagnifyingGlassArrowRight, faCamera, faNoteSticky} from "@fortawesome/free-solid-svg-icons";
+import { faVideo, faFaceGrin, faImage } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {Payload} from "../../../../shared/core/type";
 import {PublicationService} from "../../../service/publication.service";
 import {PublicationPayload} from "../../../data/payload/publication.payload";
-import {HttpClient} from "@angular/common/http";
-import {catchError, map, Observable, tap} from "rxjs";
-import {ApiResponse} from "../../../../shared/api/service/api.response";
-import {SignInUpFormType} from "../../../../security/data/enum";
-import {SignInPayload} from "../../../../security/data/payload";
-import {SignupPayload} from "../../../../security/data/payload/sign-up.payload";
-import {AppNode} from "../../../../shared/routes/enum/node.enum";
-
+import {Payload} from "../../../../shared/core/type";
+import {ProfilService} from "../../../profile/service/profil.service";
+import {PostPublication, SignInUpFormConfig} from "../../../../security/data";
 @Component({
   selector: 'app-publication-form',
   standalone: true,
@@ -23,44 +15,38 @@ import {AppNode} from "../../../../shared/routes/enum/node.enum";
   styleUrls: ['./publication-form.component.scss']
 })
 export class PublicationFormComponent {
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
+  @Input({}) config!: PostPublication;
 
-  faBell = faBell;
-  faBullhorn = faBullhorn;
-  faScissors = faScissors;
   faVideo = faVideo;
-  faMagnifyingGlass = faMagnifyingGlass;
-  faHouse = faHouse;
-  faTv = faTv;
-  faStore = faStore;
-  faUser = faUser;
-  faListUl = faListUl;
-  faMoon = faMoon;
-  faMessage = faMessage;
   faFaceGrin = faFaceGrin;
   faImage = faImage;
-  faUserGroup = faUserGroup;
-  faEllipsis = faEllipsis;
-  faThumbsUp = faThumbsUp;
-  faShare = faShare;
-  faFaceSmile = faFaceSmile;
-  faCamera = faCamera;
-  faNoteSticky = faNoteSticky;
-  faMagnifyingGlassArrowRight = faMagnifyingGlassArrowRight;
 
+  readonly profilService : ProfilService = inject(ProfilService);
+  //credentiall = this.profilService.Detail$().credential_id;
   error$:WritableSignal<string> = signal('')
+
+
 
   private readonly publicationService : PublicationService = inject(PublicationService);
   payload: PublicationPayload[] = [];
 
+  // Date
+  aujourdhui: Date = new Date();
+
+  annee: number = this.aujourdhui.getFullYear();
+  mois: number = this.aujourdhui.getMonth() + 1;
+  jour: number = this.aujourdhui.getDate();
+  dateFormatee: string = `${this.annee}-${this.mois.toString().padStart(2, '0')}-${this.jour.toString().padStart(2, '0')}`;
+
   save(): void {
-    console.log('');
+    console.log("this.credentiall");
     this.error$.set('');
 
+    //const payload: Payload = {socialLogin: false,googleHash:'', facebookHash:'', ...this.config.formGroup.value};
     const payload: PublicationPayload = {
-      credential_id: "bbf4f793-674e-4478-a47e-96feb1daa19b",
-      date_de_publication: "01-05-2028",
-      contenu: "zadaz",
+      credential_id: " ",
+      date_de_publication: this.dateFormatee,
+      contenu: this.config.formGroup.value,
       type_de_publication: "test"
     };
   console.log('payload',payload);

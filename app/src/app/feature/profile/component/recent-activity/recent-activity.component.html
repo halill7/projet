@@ -4,7 +4,9 @@
 
   <div (click)="redirectProfil()" class="img">
     <img src="assets/image/user.jpg" alt="">
-    <p>Random</p>
+    <ng-container *ngIf="profilService.Detail$() as profil">
+            <p>{{profil.nom}}</p>
+    </ng-container>
   </div>
 
   <div class="img">

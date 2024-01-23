@@ -7,22 +7,21 @@ import { Credential } from "../../../security/model/entity/credential.entity";
 export class Profil extends BaseEntity{
     @PrimaryGeneratedColumn()
     id_profil: string;
-
     @OneToOne(() => Credential, {eager: false})
     @JoinColumn({referencedColumnName: 'credential_id', name: 'credential_id'})
     credential_id: string;
 
     @Column({ nullable: true })
-    Photo_de_profil: string;
+    photo_de_profil: string;
 
     @Column({ nullable: true })
-    Description: string;
+    description: string;
 
     @Column({ nullable: true })
-    Statut: string;
+    statut: string;
 
     @Column()
-    Nom: string;
+    nom: string;
 
     @Column()
     prenom: string;

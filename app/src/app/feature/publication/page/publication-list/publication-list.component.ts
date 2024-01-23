@@ -9,8 +9,8 @@ import {
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {PublicationService} from "../../../service/publication.service";
 import {StoryComponent} from "../story/story.component";
-import {Observable} from "rxjs";
-import {PublicationPayload} from "../../../data/payload/publication.payload";
+import {ProfilService} from "../../../profile/service/profil.service";
+
 
 @Component({
   selector: 'app-publication-list',
@@ -21,20 +21,7 @@ import {PublicationPayload} from "../../../data/payload/publication.payload";
 })
 export class PublicationListComponent {
   readonly publicationService: PublicationService = inject(PublicationService);
-  faBell = faBell;
-  faBullhorn = faBullhorn;
-  faScissors = faScissors;
-  faVideo = faVideo;
-  faMagnifyingGlass = faMagnifyingGlass;
-  faHouse = faHouse;
-  faTv = faTv;
-  faStore = faStore;
-  faUser = faUser;
-  faListUl = faListUl;
-  faMoon = faMoon;
   faMessage = faMessage;
-  faFaceGrin = faFaceGrin;
-  faImage = faImage;
   faUserGroup = faUserGroup;
   faEllipsis = faEllipsis;
   faThumbsUp = faThumbsUp;
@@ -42,18 +29,17 @@ export class PublicationListComponent {
   faFaceSmile = faFaceSmile;
   faCamera = faCamera;
   faNoteSticky = faNoteSticky;
-  faMagnifyingGlassArrowRight = faMagnifyingGlassArrowRight;
 
   //private publication$: Observable<any>;
+  readonly profilService : ProfilService = inject(ProfilService);
 
 
   constructor() {
   }
 
-  publicationData$: Observable<any> | undefined;
-
   ngOnInit(): void {
     this.publicationService.publicationGet();
+    this.profilService.profilGet();
   }
 
 

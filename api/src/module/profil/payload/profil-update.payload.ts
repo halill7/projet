@@ -11,16 +11,16 @@ export class ProfilUpdatePayload {
     @IsString()
     @IsOptional()
     @Length(1, 50)
-    Photo_de_profil: string;
+    photo_de_profil: string;
     @ApiProperty()
     @IsString()
     @IsOptional()
     @Length(1, 50)
-    Description: string;
+    description: string;
     @ApiProperty()
     @IsString()
     @IsOptional()
-    Statut: string;
+    statut: string;
     @ApiProperty()
     @IsEmail()
     @IsOptional()
@@ -29,7 +29,7 @@ export class ProfilUpdatePayload {
     @ApiProperty()
     @IsOptional()
     @Length(1, 50)
-    Nom: string;
+    nom: string;
     @ApiProperty()
     @IsOptional()
     @Length(1, 34)

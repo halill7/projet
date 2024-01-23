@@ -8,24 +8,25 @@ import {ProfilController} from "../controller/profil.controller";
 import {Profil} from "../entity/profil.entity";
 import {ProfilUpdatePayload} from "../payload/profil-update.payload";
 import {SecurityService} from "../../../security/service/security.service";
+import {Credential} from "../../../security/model/entity/credential.entity";
 
 export class ProfilService {constructor(@InjectRepository(Profil) private readonly repository:
-                                            Repository<Profil>, private readonly securityService: SecurityService) {}
-    async create(payload: ProfilCreatePayload): Promise<Profil> {
-        try {
-            const existingCredential = await this.securityService.detailN(payload.email);
+                                            Repository<Profil>, @InjectRepository(Credential)
+private readonly credentialRepository: Repository<Credential>,  private readonly securityService: SecurityService) {}
+    async create(user:Credential, payload: ProfilCreatePayload): Promise<Profil> {
+        //try {
             const newProfil = Object.assign(new Profil(), Builder<Profil>()
-                .credential_id(existingCredential.credential_id)
-                .Photo_de_profil(payload.Photo_de_profil).Description(payload.Description)
-                .Statut(payload.Statut).Nom(payload.Nom)
+                .credential_id(user.credential_id)
+                .photo_de_profil(payload.photo_de_profil).description(payload.description)
+                .statut(payload.statut).nom(payload.nom)
                 .prenom(payload.prenom)
                 .email(payload.email)
                 .build());
-            return await this.repository.save(newProfil)
-                ;
-        } catch (e) {
+            return await this.repository.save(newProfil);
+            console.log(newProfil);
+        /*} catch (e) {
             throw null;
-        }
+        }*/
     }
     async delete(id: string): Promise<void> {
         try {
@@ -50,13 +51,22 @@ export class ProfilService {constructor(@InjectRepository(Profil) private readon
             throw null;
         }
     }
+
+    async detailCredential(id: string): Promise<Profil> {
+        const result = await this.repository.findOneBy({credential_id: id});
+        if (!(isNil(result))) {
+            return result;
+        }
+        // Exception here
+        throw null;
+    }
     async update(payload: ProfilUpdatePayload): Promise<Profil> {
         try {
             let detail = await this.detail(payload.id_profil);
-            detail.Photo_de_profil = payload.Photo_de_profil;
-            detail.Description = payload.Description;
-            detail.Statut = payload.Statut;
-            detail.Nom = payload.Nom;
+            detail.photo_de_profil = payload.photo_de_profil;
+            detail.description = payload.description;
+            detail.statut = payload.statut;
+            detail.nom = payload.nom;
             detail.prenom = payload.prenom;
             detail.email = payload.email;
             return await this.repository.save(detail);

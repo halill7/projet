@@ -1,33 +1,4 @@
-
-
-<div class="mainn">
-  <div class="logo">
-
-
-  </div>
-
-
-
-
-  <div class="center">
-
-    <i (click)="redirectHome()" class="fa-solid fa-house"><fa-icon [icon]="faHouse"></fa-icon></i>
-    <i class="fa-solid fa-tv"><fa-icon [icon]="faTv"></fa-icon></i>
-    <i class="fa-solid fa-store"><fa-icon [icon]="faStore"></fa-icon></i>
-    <i class="fa-solid fa-users"><fa-icon [icon]="faUser"></fa-icon></i>
-
-  </div>
-
-  <div class="right">
-
-    <i class="fa-solid fa-list-ul"><fa-icon [icon]="faListUl"></fa-icon></i>
-    <i class="fa-brands fa-facebook-messenger"><fa-icon [icon]="faMessage"></fa-icon></i>
-    <i class="fa-solid fa-bell"><fa-icon [icon]="faBell"></fa-icon></i>
-    <i class="fa-solid fa-moon"><fa-icon [icon]="faMoon"></fa-icon></i>
-    <img src="assets/image/user.jpg">
-
-  </div>
-</div>
+<app-homebar></app-homebar>
 <section>
   <div id="contenu">
 
@@ -39,30 +10,35 @@
       <app-recent-activity></app-recent-activity>
 
     </div>
-
+  <ng-container *ngIf="profilService.Detail$() as profil">
     <div class="center">
       <div class="profile-container">
-        <h1>Profil Utilisateur</h1>
+        <h2>Profil</h2>
         <div id="user-info">
-          <p>Nom: <span id="user-name">John Doe</span></p>
-          <p>Prénom: <span id="prenom">John Doe</span></p>
-          <p>Email: <span id="user-email">john.doe@example.com</span></p>
-          <p>Desctiption: <span id="description">John Doe</span></p>
-          <p>Statut: <span id="statut">John Doe</span></p>
+          <p>Nom: <span id="user-name">{{profil.nom}}</span></p>
+          <p>Prénom: <span id="prenom">{{profil.prenom}}</span></p>
+          <p>Email: <span id="user-email">{{profil.email}}</span></p>
+          <p>Description: <span id="description">{{profil.description}}</span></p>
+          <p>Statut: <span id="statut">{{profil.statut}}</span></p>
           <!-- Ajoutez d'autres informations selon vos besoins -->
         </div>
 
-        <button id="edit-button" onclick="">Modifier</button>
 
-        <div id="edit-form" style="display: none;">
+        <div id="edit-form" style="">
           <label for="name">Nom:</label>
-          <input type="text" id="name" value="John Doe">
+          <input type="text" id="name" placeholder="Votre nom">
+
+          <label for="prenom">Prénom:</label>
+          <input type="text" id="prenomm" placeholder="Votre prénom">
 
           <label for="email">Email:</label>
-          <input type="email" id="email" value="john.doe@example.com">
+          <input type="email" id="email" placeholder="Votre email">
 
-          <label for="city">Ville:</label>
-          <input type="text" id="city" value="Ville">
+          <label for="prenom">Description:</label>
+          <input type="text" id="descriptionn" placeholder="Votre description">
+
+          <label for="statut">Statut:</label>
+          <input type="text" id="statutt" placeholder="Votre statut">
           <!-- Ajoutez d'autres champs de saisie selon vos besoins -->
 
           <button onclick="">Enregistrer</button>
@@ -71,7 +47,7 @@
 
 
     </div>
-
+  </ng-container>
 
     <div class="right">
       <app-your-page></app-your-page>

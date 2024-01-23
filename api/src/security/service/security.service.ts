@@ -117,6 +117,7 @@ export class SecurityService {
                 .googleHash(payload.googleHash)
                 .mail(payload.mail)
                 .build());
+            // Rajouter id_profil à la création d'un compte
         } catch (e) {
             throw new SignupException();
         }

@@ -7,8 +7,6 @@ import {PublicationUpdatePayload} from "../payload/publication-update.payload";
 import {PublicationService} from "../service/publication.service";
 import {User} from "@common/config/metadata/user.metadata";
 import {Credential} from "../../../security/model/entity/credential.entity";
-import {LikeCreatePayload} from "../../like/payload/like-create.payload";
-import {Like} from "../../like/entity/like.entity";
 
 @ApiBearerAuth('access-token')
 @ApiTags('Publication')

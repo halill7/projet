@@ -3,7 +3,7 @@ import {Credential} from './credential.entity';
 import {ulid} from "ulid";
 @Entity()
 export class Token {
-    @PrimaryColumn('varchar', { length:26, default: () => `'${ulid()}'` })
+    @PrimaryGeneratedColumn("uuid")
     token_id: string;
     @Column({nullable: false})
     token: string;
