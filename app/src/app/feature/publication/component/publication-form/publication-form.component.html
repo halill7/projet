@@ -7,13 +7,14 @@
     <div class="container">
       <div class="my_post">
 
-        <div class="post_top">
+        <div class="post_top" [formGroup]="config.formGroup">
           <img src="assets/image/user.jpg" alt="User Image">
 
           <ng-container *ngFor="let field of config.fields">
-          <input [type]="field.inputType" [placeholder]="field.placeHolder">
+          <input [type]="field.inputType" [formControl]='field.control' [placeholder]="field.placeHolder">
           </ng-container>
           <button (click)="save()">Post</button>
+
 
           <br>
         </div>

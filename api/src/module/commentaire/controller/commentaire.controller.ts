@@ -8,6 +8,8 @@ import {Commentaire} from "../entity/commentaire.entity";
 import {CommentaireUpdatePayload} from "../payload/commentaire-update.payload";
 import {CommentaireCreatePayload} from "../payload/commentaire-create.payload";
 import {CommentaireService} from "../service/commentaire.service";
+import {User} from "@common/config/metadata/user.metadata";
+import {Credential} from "../../../security/model/entity/credential.entity";
 
 @ApiBearerAuth('access-token')
 @ApiTags('Commentaire')
@@ -16,8 +18,8 @@ export class CommentaireController {
     constructor(private readonly service: CommentaireService) {
     }
     @Post('create')
-    create(@Body() payload: CommentaireCreatePayload): Promise<Commentaire> {
-        return this.service.create(payload);
+    create(@User() user: Credential, @Body() payload: CommentaireCreatePayload): Promise<Commentaire> {
+        return this.service.create(user, payload);
     }
     @Delete('delete/:id')
     delete(@Param('id') id: string): Promise<void> {

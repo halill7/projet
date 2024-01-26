@@ -61,14 +61,35 @@ private readonly credentialRepository: Repository<Credential>,  private readonly
         throw null;
     }
     async update(payload: ProfilUpdatePayload): Promise<Profil> {
+
         try {
             let detail = await this.detail(payload.id_profil);
-            detail.photo_de_profil = payload.photo_de_profil;
-            detail.description = payload.description;
-            detail.statut = payload.statut;
-            detail.nom = payload.nom;
-            detail.prenom = payload.prenom;
-            detail.email = payload.email;
+
+            // Mettez à jour seulement les propriétés fournies dans le payload
+            if (payload.photo_de_profil !== undefined) {
+                detail.photo_de_profil = payload.photo_de_profil;
+            }
+
+            if (payload.description !== undefined) {
+                detail.description = payload.description;
+            }
+
+            if (payload.statut !== undefined) {
+                detail.statut = payload.statut;
+            }
+
+            if (payload.nom !== undefined) {
+                detail.nom = payload.nom;
+            }
+
+            if (payload.prenom !== undefined) {
+                detail.prenom = payload.prenom;
+            }
+
+            if (payload.email !== undefined) {
+                detail.email = payload.email;
+            }
+
             return await this.repository.save(detail);
         } catch (e) {
             throw null;

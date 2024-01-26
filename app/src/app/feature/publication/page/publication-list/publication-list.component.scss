@@ -130,7 +130,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
+
 
 .friends_post .like .like_icon {
   display: flex;
@@ -191,3 +193,96 @@
   padding: 0 5px;
   color: #919191;
 }
+
+
+
+
+.comment_search {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.comment_search input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+  margin-right: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre légère */
+}
+
+.comment_search button,
+.comment_search i {
+  flex: 1; /* Fait en sorte que le bouton et les icônes prennent toute la largeur */
+  cursor: pointer;
+}
+
+.comment_search button {
+  padding: 10px 15px;
+  background-color: #45abff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre légère */
+}
+
+.comment_search button:hover {
+  background-color: #45a049;
+}
+
+.comment_search i {
+  margin-right: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre légère */
+}
+
+
+.commentt {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+
+
+  &:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.comment-text {
+  margin-top: 5px;
+}
+
+.comment-date {
+  margin-top: 10px;
+  color: #555;
+  font-size: 0.8em;
+}
+
+.comment::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+

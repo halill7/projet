@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {formFieldEnum, PublicationFormType} from "../../security/data/enum";
-import {PostPublication, PublicationField} from "../../security/data";
+import {PostPublication, PublicationField} from "../../../security/data";
+import {PublicationFormType} from "../../../security/data/enum";
+
 
 @Injectable({
   providedIn: 'root'

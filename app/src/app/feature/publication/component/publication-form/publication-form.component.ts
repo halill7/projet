@@ -2,27 +2,28 @@ import {Component, inject, Input, signal, WritableSignal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { faVideo, faFaceGrin, faImage } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {PublicationService} from "../../../service/publication.service";
 import {PublicationPayload} from "../../../data/payload/publication.payload";
 import {Payload} from "../../../../shared/core/type";
 import {ProfilService} from "../../../profile/service/profil.service";
 import {PostPublication, SignInUpFormConfig} from "../../../../security/data";
+import {ReactiveFormsModule} from "@angular/forms";
+import {PublicationService} from "../../../service/publication/publication.service";
 @Component({
   selector: 'app-publication-form',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
   templateUrl: './publication-form.component.html',
   styleUrls: ['./publication-form.component.scss']
 })
 export class PublicationFormComponent {
-  @Input({}) config!: PostPublication;
+  @Input({required:true}) config!: PostPublication;
 
   faVideo = faVideo;
   faFaceGrin = faFaceGrin;
   faImage = faImage;
 
   readonly profilService : ProfilService = inject(ProfilService);
-  //credentiall = this.profilService.Detail$().credential_id;
+
   error$:WritableSignal<string> = signal('')
 
 
@@ -44,13 +45,14 @@ export class PublicationFormComponent {
 
     //const payload: Payload = {socialLogin: false,googleHash:'', facebookHash:'', ...this.config.formGroup.value};
     const payload: PublicationPayload = {
-      credential_id: " ",
+      credential_id: 'some',
       date_de_publication: this.dateFormatee,
-      contenu: this.config.formGroup.value,
-      type_de_publication: "test"
+      type_de_publication: "test",
+      ...this.config.formGroup.value
+
     };
   console.log('payload',payload);
-   this.publicationService.publicationPost(payload).subscribe();
+   this.publicationService.publicationPost(payload as PublicationPayload).subscribe();
 
 
   }

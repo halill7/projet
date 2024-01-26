@@ -12,5 +12,18 @@ export enum SignInUpFormType {
 }
 
 export enum PublicationFormType {
-  CONTENU = 'Explain yourself'
+  CONTENU = 'contenu'
+}
+
+
+export enum CommentFormType {
+  CONTENU = 'contenu'
+}
+
+export enum ProfilFormType {
+  NOM = 'nom',
+  PRENOM = 'prenom',
+  EMAIL = 'email',
+  DESCRIPTION = 'description',
+  STATUT = 'statut'
 }

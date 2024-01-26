@@ -9,14 +9,14 @@ import {PublicationUpdatePayload} from "../../publication/payload/publication-up
 import {Commentaire} from "../entity/commentaire.entity";
 import {CommentaireCreatePayload} from "../payload/commentaire-create.payload";
 import {CommentaireUpdatePayload} from "../payload/commentaire-update.payload";
+import {Credential} from "../../../security/model/entity/credential.entity";
 
 export class CommentaireService {constructor(@InjectRepository(Commentaire) private readonly repository:
                                                  Repository<Commentaire>, private readonly securityService: TokenService) {}
-    async create(payload: CommentaireCreatePayload): Promise<Commentaire> {
+    async create(user:Credential, payload: CommentaireCreatePayload): Promise<Commentaire> {
         try {
-            const existingCredential = "bbf4f793-674e-4478-a47e-96feb1daa19b";
             const newPublication = Object.assign(new Commentaire(), Builder<Commentaire>()
-                .credential_id(existingCredential).id_publication(payload.id_publication)
+                .credential_id(user.credential_id).id_publication(payload.id_publication)
                 .date_du_commentaire(payload.date_du_commentaire).contenu(payload.contenu)
                 .build());
             return await this.repository.save(newPublication)

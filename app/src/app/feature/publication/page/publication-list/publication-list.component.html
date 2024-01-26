@@ -2,7 +2,7 @@
 
 
 
-<app-publication-form></app-publication-form>
+<app-publication-form [config]="configg"></app-publication-form>
 
 <hr>
   <ng-container *ngFor="let item of publicationService.list$()">
@@ -54,7 +54,7 @@
 
       <hr>
 
-      <div class="like">
+      <div class="like" (click)="postLike()">
 
         <div class="like_icon">
           <i class="fa-solid fa-thumbs-up activi"><fa-icon [icon]="faThumbsUp"></fa-icon></i>
@@ -80,23 +80,36 @@
         <img src="assets/image/user.jpg">
         <div class="circle"></div>
 
-        <div class="comment_search">
-
-          <input type="text" placeholder="Write a comment">
+        <div class="comment_search" [formGroup]="confi.formGroup">
+          <ng-container *ngFor="let field of confi.fields">
+          <input [type]="field.inputType" [formControl]='field.control' [placeholder]="field.placeHolder">
           <i class="fa-regular fa-face-smile"><fa-icon [icon]="faFaceSmile"></fa-icon></i>
           <i class="fa-solid fa-camera"><fa-icon [icon]="faCamera"></fa-icon></i>
           <i class="fa-regular fa-note-sticky"><fa-icon [icon]="faNoteSticky"></fa-icon></i>
+          </ng-container>
+          <button (click)="postComment()">Post</button>
+        </div>
 
         </div>
 
+
+      <ng-container *ngFor="let itemm of commentService.list$()">
+        <h1>{{itemm.credential_id}}</h1>
+
+      <div class="commentt" *ngIf="item.id_publication == item.id_publication">
+        <div class="user-info">
+          <img src="assets/image/user.jpg" alt="User Avatar">
+          <span class="username"></span>
+        </div>
+        <p class="comment-text">{{itemm.contenu}}</p>
+        <p class="comment-date">{{itemm.date_du_commentaire}}</p>
       </div>
+        </ng-container>
 
     </div>
+
   </ng-container>
   <!-- Ajoutez d'autres champs que vous avez dans votre objet PublicationPayload -->
-
-
-
 
 
 

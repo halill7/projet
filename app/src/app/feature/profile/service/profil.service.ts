@@ -3,8 +3,10 @@ import {ApiService} from "../../../shared/api/service/api.service";
 import {TokenService} from "../../../shared/api/model/token.service";
 import {ProfilDto} from "../model/profil.dto";
 import {ApiURI} from "../../../shared/api/enum";
-import {tap} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {ApiResponse} from "../../../shared/api/service/api.response";
+import {PublicationPayload} from "../../data/payload/publication.payload";
+import {ProfilUpdatePayload} from "../../data/payload/profil-update.payload";
 
 
 @Injectable({
@@ -46,8 +48,7 @@ export class ProfilService {
   // Create put method for update
 
 
-
-
-
-
+  public updateProfil(payload: ProfilUpdatePayload):Observable<any>  {
+    return this.api.put(ApiURI.PROFIL_UPDATE, payload);
+  }
 }

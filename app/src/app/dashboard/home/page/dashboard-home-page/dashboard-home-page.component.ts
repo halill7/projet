@@ -1,10 +1,5 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {faCamera, faCoffee, faNoteSticky} from '@fortawesome/free-solid-svg-icons';
-import { faBell, faBullhorn, faScissors, faVideo, faMagnifyingGlass, faHouse,
-faTv, faStore, faUser, faListUl, faMessage, faMoon, faFaceGrin, faImage, faUserGroup,
-faEllipsis, faThumbsUp, faShare, faFaceSmile, faMagnifyingGlassArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {TokenService} from "../../../../shared/api/model/token.service";
 import {AppNode} from "../../../../shared/routes/enum/node.enum";
 import {Router, RouterOutlet} from "@angular/router";
@@ -12,7 +7,6 @@ import {ApiService} from "../../../../shared/api/service/api.service";
 import {ApiURI} from "../../../../shared/api/enum";
 import {Observable, tap} from "rxjs";
 import {ApiResponse} from "../../../../shared/api/service/api.response";
-import {SignInUpFormComponent} from "../../../../security/page/sign-in-up-form/sign-in-up-form.component";
 import {RecentActivityComponent} from "../../../../feature/profile/component/recent-activity/recent-activity.component";
 import {YourPageComponent} from "../../../../feature/profile/component/your-page/your-page.component";
 import {
@@ -22,41 +16,25 @@ import {
   PublicationListComponent
 } from "../../../../feature/publication/page/publication-list/publication-list.component";
 import {HomebarComponent} from "../homebar/homebar.component";
+import {PostComment, PostPublication} from "../../../../security/data";
+import {PublicationFormService} from "../../../../feature/service/publication/publicationForm.service";
+import {CommentFormService} from "../../../../feature/service/comment/commentform.service";
+
 
 
 @Component({
   selector: 'app-dashboard-home-page',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, RouterOutlet, RecentActivityComponent, YourPageComponent, PublicationFormComponent, PublicationListComponent, HomebarComponent],
+  imports: [CommonModule, RouterOutlet, RecentActivityComponent, YourPageComponent, PublicationFormComponent, PublicationListComponent, HomebarComponent],
   templateUrl: './dashboard-home-page.component.html',
   styleUrls: ['./dashboard-home-page.component.scss']
 })
 export class DashboardHomePageComponent {
-  // Les icones
-  faBell = faBell;
-  faBullhorn = faBullhorn;
-  faScissors = faScissors;
-  faVideo = faVideo;
-  faMagnifyingGlass = faMagnifyingGlass;
-  faHouse = faHouse;
-  faTv = faTv;
-  faStore = faStore;
-  faUser = faUser;
-  faListUl = faListUl;
-  faMoon = faMoon;
-  faMessage = faMessage;
-  faFaceGrin = faFaceGrin;
-  faImage = faImage;
-  faUserGroup = faUserGroup;
-  faEllipsis = faEllipsis;
-  faThumbsUp = faThumbsUp;
-  faShare = faShare;
-  faFaceSmile = faFaceSmile;
-  faCamera = faCamera;
-  faNoteSticky = faNoteSticky;
-  faMagnifyingGlassArrowRight = faMagnifyingGlassArrowRight;
 
-  //private readonly signIn: SignInUpFormComponent = inject(SignInUpFormComponent);
+
+
+  readonly config:PostPublication = PublicationFormService.publicationFormConfig();
+  readonly configg:PostComment = CommentFormService.commentFormConfig();
   ngOnInit(): void {
     // Appel de la fonction me() au chargement du composant
     this.tokenService.getToken();
