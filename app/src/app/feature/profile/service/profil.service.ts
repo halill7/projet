@@ -14,12 +14,13 @@ import {ProfilUpdatePayload} from "../../data/payload/profil-update.payload";
 })
 export class ProfilService {
 
+
   private readonly api:ApiService = inject(ApiService);
   private readonly tokenService: TokenService = inject(TokenService);
 
   //améliorer voir les notes de cours
   Detail$:WritableSignal<ProfilDto> = signal({
-    credential_id: '',
+    credential_id: { username: '' },
     photo_de_profil: '',
     description: '',
     statut: '',

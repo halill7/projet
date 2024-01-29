@@ -48,7 +48,7 @@
 
 
 <ng-container *ngIf="profilService.Detail$() as profile">
-  <span id="user-name">{{profile.credential_id}}</span>
+  <span id="user-name">{{profile.credential_id.username}}</span>
 
 
 </ng-container>

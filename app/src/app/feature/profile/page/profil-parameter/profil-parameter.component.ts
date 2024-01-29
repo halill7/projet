@@ -10,10 +10,8 @@ import {AppNode} from "../../../../shared/routes/enum/node.enum";
 import {HomebarComponent} from "../../../../dashboard/home/page/homebar/homebar.component";
 import {ProfilService} from "../../service/profil.service";
 import {PostComment, UpdateProfil} from "../../../../security/data";
-import {CommentFormService} from "../../../service/comment/commentform.service";
 import {ProfilFormService} from "../../service/profilform.service";
 import {ReactiveFormsModule} from "@angular/forms";
-import {LikePayload} from "../../../data/payload/like.payload";
 import {ProfilUpdatePayload} from "../../../data/payload/profil-update.payload";
 
 

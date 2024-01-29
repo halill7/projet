@@ -7,6 +7,7 @@ import {LikeService} from "../service/like.service";
 import {User} from "@common/config/metadata/user.metadata";
 
 import {Credential} from "../../../security/model/entity/credential.entity";
+import {Commentaire} from "../../commentaire/entity/commentaire.entity";
 @ApiBearerAuth('access-token')
 @ApiTags('Like')
 @Controller('like')
@@ -24,6 +25,21 @@ export class LikeController {
     @Get('detail/:id')
     detail(@Param('id') id: string): Promise<Like> {
         return this.service.detail(id);
+    }
+
+    @Get('count-like-publication/:id')
+    countLikePublication(@Param('id') id: string): Promise<Number> {
+        return this.service.countLikePublication(id);
+    }
+
+    @Get('count-likes')
+    countLikes(@User() user: Credential,): Promise<Number> {
+        return this.service.countLikes(user);
+    }
+
+    @Get('last-like')
+    getLastLikeDate(@User() user: Credential,): Promise<Like> {
+        return this.service.getLastLikeDate(user);
     }
     @Get('list')
     getAll(): Promise<Like[]> {

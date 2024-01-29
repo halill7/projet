@@ -56,15 +56,28 @@
 
   <div class="notification-block">
 
+    <ng-container *ngIf="commentaireService.lastComment$() as last">
     <div class="shortcuts">
-      <p>Commented on post</p>
+      <p>Last comment : {{calculateTimeElapsed(last.date_du_commentaire)}}</p>
     </div>
-
+    </ng-container>
+    <ng-container *ngIf="likeService.lastLike$() as last">
     <div class="shortcuts">
-      <p>Posted: "Hello"</p>
+      <p>Last like : {{calculateTimeElapsed(last.date_du_like)}}</p>
     </div>
+    </ng-container>
 
+    <ng-container *ngIf="publicationService.lastPost$() as last">
+    <div class="shortcuts">
+      <p>Last Post : {{calculateTimeElapsed(last.date_de_publication)}}</p>
+    </div>
+    </ng-container>
+    <div class="profil" (click)="redirectProfil()">
+      <a>Edit profil</a>
+    </div>
   </div>
+
+
 
 
 

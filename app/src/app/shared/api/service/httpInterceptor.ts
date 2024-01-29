@@ -24,14 +24,14 @@ export const HttpInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: 
   //if route is not public
   const tokenService = inject(TokenService);
   const router: Router = inject(Router);
-  console.log('ici',tokenService.token());
+  //console.log('ici',tokenService.token());
   if (!tokenService.token().isEmpty) {
     const api: ApiService = inject(ApiService);
     return next(setTokenInHeader(req, tokenService.token().token))
       .pipe(catchError((err: HttpErrorResponse) => handleError(err, req, next,
         tokenService,router,api)));
   }
-  console.log('la');
+  //console.log('la');
   // We need to redirect because don't have access (no token)
   return redirectToPublic(router);
 }

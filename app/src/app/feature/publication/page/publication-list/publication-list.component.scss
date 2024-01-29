@@ -209,12 +209,12 @@
   border-radius: 5px;
   width: 80%;
   margin-right: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre légère */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .comment_search button,
 .comment_search i {
-  flex: 1; /* Fait en sorte que le bouton et les icônes prennent toute la largeur */
+  flex: 1;
   cursor: pointer;
 }
 
@@ -224,11 +224,15 @@
   color: #fff;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Ajout d'une ombre légère */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  &:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .comment_search button:hover {
-  background-color: #45a049;
+
 }
 
 .comment_search i {
@@ -274,7 +278,7 @@
 }
 
 .comment-date {
-  margin-top: 10px;
+  margin-left: 10px;
   color: #555;
   font-size: 0.8em;
 }
@@ -283,6 +287,29 @@
   content: "";
   display: table;
   clear: both;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centre le contenu horizontalement */
+  margin-top: 20px;
+}
+
+.custom-button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.custom-button:hover {
+  background-color: #2980b9;
 }
 
 

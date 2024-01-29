@@ -7,6 +7,7 @@ import {PublicationUpdatePayload} from "../payload/publication-update.payload";
 import {PublicationService} from "../service/publication.service";
 import {User} from "@common/config/metadata/user.metadata";
 import {Credential} from "../../../security/model/entity/credential.entity";
+import {Like} from "../../like/entity/like.entity";
 
 @ApiBearerAuth('access-token')
 @ApiTags('Publication')
@@ -27,6 +28,21 @@ export class PublicationController {
     @Get('detail/:id')
     detail(@Param('id') id: string): Promise<Publication> {
         return this.service.detail(id);
+    }
+
+    @Get('count-publication')
+    countPublication(@User() user: Credential,): Promise<Number> {
+        return this.service.countPublication(user);
+    }
+
+    @Get('detail-publication')
+    detailCredential(@User() user :  Credential): Promise<Publication[]> {
+        return this.service.detailCredential(user.credential_id);
+    }
+
+    @Get('last-publication')
+    getLastPublicationDate(@User() user: Credential,): Promise<Publication> {
+        return this.service.getLastPublicationDate(user);
     }
     @Get('list')
     getAll(): Promise<Publication[]> {

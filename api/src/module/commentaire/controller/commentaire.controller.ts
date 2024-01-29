@@ -10,6 +10,7 @@ import {CommentaireCreatePayload} from "../payload/commentaire-create.payload";
 import {CommentaireService} from "../service/commentaire.service";
 import {User} from "@common/config/metadata/user.metadata";
 import {Credential} from "../../../security/model/entity/credential.entity";
+import {Publication} from "../../publication/entity/publication.entity";
 
 @ApiBearerAuth('access-token')
 @ApiTags('Commentaire')
@@ -28,6 +29,27 @@ export class CommentaireController {
     @Get('detail/:id')
     detail(@Param('id') id: string): Promise<Commentaire> {
         return this.service.detail(id);
+    }
+
+    // Afficher les commentaire en fonction de l'id_publication
+    @Get('detailTab/:id')
+    detailTab(@Param('id') id: string): Promise<Commentaire[]> {
+        return this.service.detailTab(id);
+    }
+
+    @Get('count-commentaire/:id')
+    countCommentaire(@Param('id') id: string): Promise<Number> {
+        return this.service.countCommentaire(id);
+    }
+
+    @Get('detail-commentaire')
+    detailCredential(@User() user :  Credential): Promise<Commentaire[]> {
+        return this.service.detailCredential(user.credential_id);
+    }
+
+    @Get('last-comment')
+    getLastCommentDate(@User() user: Credential,): Promise<Commentaire> {
+        return this.service.getLastCommentDate(user);
     }
     @Get('list')
     getAll(): Promise<Commentaire[]> {

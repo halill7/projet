@@ -19,6 +19,10 @@ export class ApiService {
   get(partURL: ApiURI): Observable<ApiResponse> {
     return this.handle(this.http.get(`${this.baseURL}${partURL}`));
   }
+
+  gett(partURL: string): Observable<ApiResponse> {
+    return this.handle(this.http.get(`${this.baseURL}${partURL}`));
+  }
   post(partURL: ApiURI, payload: Payload): Observable<ApiResponse> {
     return this.handle(this.http.post(`${this.baseURL}${partURL}`, payload));
   }

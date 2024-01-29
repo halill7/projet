@@ -1,18 +1,13 @@
 import {InjectRepository} from "@nestjs/typeorm";
-import {Commentaire} from "../../commentaire/entity/commentaire.entity";
 import {Repository} from "typeorm";
-import {TokenService} from "../../../security/jwt/token.service";
-import {CommentaireCreatePayload} from "../../commentaire/payload/commentaire-create.payload";
 import {Builder} from "builder-pattern";
 import {isNil} from "lodash";
-import {CommentaireUpdatePayload} from "../../commentaire/payload/commentaire-update.payload";
 import {Like} from "../entity/like.entity";
 import {LikeCreatePayload} from "../payload/like-create.payload";
 import {LikeUpdatePayload} from "../payload/like-update.payload";
-import {SecurityController} from "../../../security/security.controller";
 import {Credential} from "../../../security/model/entity/credential.entity";
-import {User} from "@common/config/metadata/user.metadata";
 import {Injectable} from "@nestjs/common";
+import {Commentaire} from "../../commentaire/entity/commentaire.entity";
 @Injectable()
 export class LikeService {
     constructor(@InjectRepository(Like) private readonly repository:Repository<Like>) {}
@@ -45,6 +40,42 @@ export class LikeService {
         // Exception here
         throw null;
     }
+
+    /*async countLikePublication(id_publication: string) : Promise<number> {
+        const result = await this.repository.count({id_publication: id_publication});
+        if (!(isNil(result))) {
+            return result;
+        }
+        // Exception here
+        throw null;
+    }*/
+
+    async countLikePublication(id_publication: string): Promise<number> {
+        const result = await this.repository.count({ where: { id_publication: id_publication } });
+
+        if (!isNil(result)) {
+            return result;
+        }
+
+        // Exception here
+        throw new Error("Erreur lors du comptage des likes de la publication");
+    }
+
+    async countLikes(user:Credential): Promise<number> {
+        const result = await this.repository.count({ where: { credential_id: user.credential_id } });
+
+        if (!isNil(result)) {
+            return result;
+        }
+
+        // Exception here
+        throw new Error("Erreur lors du comptage des likes de la publication");
+    }
+
+
+
+
+
     async getAll(): Promise<Like[]> {
         try {
             return await this.repository.find();
@@ -60,5 +91,18 @@ export class LikeService {
         } catch (e) {
             throw null;
         }
+    }
+
+    async getLastLikeDate(user:Credential): Promise<Like> {
+        const lastLike = await this.repository.findOne({
+            where: {
+                credential_id: user.credential_id,
+            },
+            order: {
+                date_du_like: 'DESC', id_like: 'DESC',
+            },
+        });
+
+        return lastLike ? lastLike : null;
     }
 }

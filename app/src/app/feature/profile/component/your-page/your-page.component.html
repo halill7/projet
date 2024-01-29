@@ -4,7 +4,7 @@
 
     <div class="page">
 
-      <h2>Your Pages and profiles</h2>
+      <h2>Your Page</h2>
       <div class="menu">
         <i class="fa-solid fa-ellipsis"><fa-icon [icon]="faEllipsis"></fa-icon></i>
       </div>
@@ -21,15 +21,25 @@
       <p>20 Notifications</p>
     </div>
 
+    <ng-container *ngIf="publicationService.countPubli$() as count">
     <div class="page_icon">
-      <i class=""><fa-icon [icon]="faBullhorn"></fa-icon></i>
+      <i class=""><fa-icon [icon]="faNewspaper"></fa-icon></i>
+      <p>Number of posts : {{count}}</p>
+    </div>
+    </ng-container>
+    <ng-container *ngIf="likeService.countLikes$() as count">
+      <div class="page_icon">
+        <i class=""><fa-icon [icon]="faThumbsUp"></fa-icon></i>
 
-      <p>Create promotion</p>
+        <p>Number of likes : {{count}}</p>
+      </div>
+    </ng-container>
+
     </div>
 
   </div>
 
-</div>
+
 
 
 

@@ -1,6 +1,6 @@
 import {InjectRepository} from "@nestjs/typeorm";
 import {Profil} from "../../profil/entity/profil.entity";
-import {Repository} from "typeorm";
+import {FindManyOptions, Repository} from "typeorm";
 import {SecurityService} from "../../../security/service/security.service";
 import {ProfilCreatePayload} from "../../profil/payload/profil-create.payload";
 import {Builder} from "builder-pattern";
@@ -45,6 +45,33 @@ export class PublicationService {constructor(@InjectRepository(Publication) priv
         // Exception here
         throw null;
     }
+
+    async detailCredential(id: string): Promise<Publication[]> {
+        const options: FindManyOptions<Publication> = {
+            where: { credential_id: id },
+        };
+
+        const results = await this.repository.find(options);
+
+        if (results.length > 0) {
+            return results;
+        }
+
+        // Exception here
+        throw new Error('Aucune publication trouvée pour l\'identifiant de la credential fourni.');
+    }
+
+    async countPublication(user:Credential): Promise<number> {
+        const result = await this.repository.count({ where: { credential_id: user.credential_id } });
+
+        if (!isNil(result)) {
+            return result;
+        }
+
+        // Exception here
+        throw new Error("Erreur lors du comptage des likes de la publication");
+    }
+
     async getAll(): Promise<Publication[]> {
         try {
             return await this.repository.find();
@@ -61,5 +88,18 @@ export class PublicationService {constructor(@InjectRepository(Publication) priv
         } catch (e) {
             throw null;
         }
+    }
+
+    async getLastPublicationDate(user:Credential): Promise<Publication> {
+        const lastPublication = await this.repository.findOne({
+            where: {
+                credential_id: user.credential_id,
+            },
+            order: {
+                date_de_publication: 'DESC', id_publication: 'DESC',
+            },
+        });
+
+        return lastPublication ? lastPublication : null;
     }
 }

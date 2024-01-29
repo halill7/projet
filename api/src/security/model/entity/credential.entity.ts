@@ -36,7 +36,7 @@ export class Credential {
 
     /*@OneToOne(() => Profil, profil => profil.credential_id, { eager: false })
     profil: Profil;*/
-    @OneToOne(() => Profil, {cascade: true, eager: true})
+    @OneToOne(() => Profil, {cascade: true, eager: false})
     @JoinColumn({referencedColumnName: 'id_profil', name: 'id_profil_fk'})
     profil: Profil;
 

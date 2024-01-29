@@ -18,11 +18,9 @@
 }
 
 .left{
-  width: 25%;
+  width: 100%;
   height: 92vh;
-
   background: #f5f5f5;
-
 }
 
 .left::-webkit-scrollbar{
@@ -106,31 +104,14 @@
 }
 
 
-.notification-block {
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  padding: 15px; /* Adjust the padding for more space inside the block */
-  margin: 15px; /* Adjust the margin for spacing outside the block */
-  border-radius: 8px; /* Adjust the border radius for rounded corners */
-  width: 150px; /* Adjust the width of the block */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
-.shortcuts {
-  margin-bottom: 8px; /* Adjust the margin between individual shortcuts */
-}
 
-.shortcuts p {
-  margin: 0;
-}
 
-/* Additional styling for the notifications if needed */
 .shortcuts:nth-child(odd) {
   background-color: #e0e0e0;
 }
 
 
-/* Container for Recent Activity */
 .notification-block {
   background-color: #f5f5f5;
   border: 1px solid #ccc;
@@ -139,10 +120,10 @@
   border-radius: 8px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
-  left: 10px; /* Ajustez la valeur pour la distance par rapport à la gauche */
+  left: 10px;
+  width: 200px;
 }
 
-/* Individual Activity Shortcut */
 .shortcuts {
   display: flex;
   align-items: center;
@@ -162,25 +143,62 @@
   height: 40px;
   object-fit: cover;
   object-position: center;
-  border-radius: 10px;
+  border-radius: 50%;
   margin-right: 10px;
 }
 
 .shortcuts p {
   margin: 0;
+  color: #333;
 }
 
-/* Alternate background for odd shortcuts */
+
 .shortcuts:nth-child(odd) {
   background-color: #e0e0e0;
 }
 
-/* Additional styling for the Recent Activity header */
-.notification-block h2 {
-  font-size: 18px;
-  color: #919191;
-  margin: 5px 0;
+.profil {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.profil a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4a90e2;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.profil a::before {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #4a90e2;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.profil a:hover {
+  background-color: #1e87f0;
+}
+
+.profil a:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+
+
 
 
 

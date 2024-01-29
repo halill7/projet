@@ -8,7 +8,7 @@ export class Publication {
     @PrimaryGeneratedColumn()
     id_publication: string;
 
-    @ManyToOne(() => Credential, {eager: false})
+    @ManyToOne(() => Credential, {eager: true})
     @JoinColumn({referencedColumnName: 'credential_id', name: 'credential_id'})
     credential_id: string;
 

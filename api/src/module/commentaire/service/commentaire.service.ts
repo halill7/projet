@@ -1,6 +1,6 @@
 import {InjectRepository} from "@nestjs/typeorm";
 import {Publication} from "../../publication/entity/publication.entity";
-import {Repository} from "typeorm";
+import {FindManyOptions, Repository} from "typeorm";
 import {TokenService} from "../../../security/jwt/token.service";
 import {PublicationCreatePayload} from "../../publication/payload/publication-create.payload";
 import {Builder} from "builder-pattern";
@@ -41,6 +41,48 @@ export class CommentaireService {constructor(@InjectRepository(Commentaire) priv
         // Exception here
         throw null;
     }
+
+    async detailTab(id: string): Promise<Commentaire[]> {
+        const options: FindManyOptions<Commentaire> = {
+            where: { id_publication: id },
+        };
+
+        const results = await this.repository.find(options);
+
+        if (results.length > 0) {
+            return results;
+        }
+
+        // Exception here
+        throw new Error('Aucun commentaire trouvé pour l\'identifiant de la publication fourni.');
+    }
+
+    async countCommentaire(id: string): Promise<number> {
+        const result = await this.repository.count({ where: { credential_id: id } });
+
+        if (!isNil(result)) {
+            return result;
+        }
+
+        // Exception here
+        throw new Error("Erreur lors du comptage des likes de la publication");
+    }
+
+
+    async detailCredential(id: string): Promise<Commentaire[]> {
+        const options: FindManyOptions<Commentaire> = {
+            where: { credential_id: id },
+        };
+
+        const results = await this.repository.find(options);
+
+        if (results.length > 0) {
+            return results;
+        }
+
+        // Exception here
+        throw new Error('Aucune publication trouvée pour l\'identifiant de la credential fourni.');
+    }
     async getAll(): Promise<Commentaire[]> {
         try {
             return await this.repository.find();
@@ -56,5 +98,19 @@ export class CommentaireService {constructor(@InjectRepository(Commentaire) priv
         } catch (e) {
             throw null;
         }
+    }
+
+
+    async getLastCommentDate(user:Credential): Promise<Commentaire> {
+        const lastComment = await this.repository.findOne({
+            where: {
+                credential_id: user.credential_id,  // Remplacez userId par la condition que vous souhaitez utiliser
+            },
+            order: {
+                date_du_commentaire: 'DESC', id_commentaire: 'DESC',
+            },
+        });
+
+        return lastComment ? lastComment : null;
     }
 }

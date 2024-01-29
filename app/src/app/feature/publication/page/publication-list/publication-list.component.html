@@ -17,7 +17,7 @@
           <div class="friends_name">
             <ng-container *ngIf="profilService.Detail$() as profil">
             <p class="friends_name">
-              {{item.id_publication}}
+              {{item.credential_id.username}}
             </p>
             </ng-container>
             <p class="time">{{item.date_de_publication}}<i class="fa-solid fa-user-group"><fa-icon [icon]="faUserGroup"></fa-icon></i></p>
@@ -28,7 +28,7 @@
 
         <div class="menu">
 
-          <i class="fa-solid fa-ellipsis"><fa-icon [icon]="faEllipsis"></fa-icon></i>
+          <i class="fa-solid fa-ellipsis"><fa-icon [icon]="faTrashCan"></fa-icon></i>
 
         </div>
 
@@ -42,7 +42,7 @@
           <img src="assets/image/like.png">
           <img src="assets/image/haha.png">
           <img src="assets/image/heart.png">
-          <p>You, John Doe and 25K others</p>
+          <p></p>
         </div>
 
         <div class="comment">
@@ -54,7 +54,9 @@
 
       <hr>
 
-      <div class="like" (click)="postLike()">
+      <!-- Ajouté un paramètre à la méthode postLike(id_publication) -->
+
+      <div class="like" (click)="postLike(String(item.id_publication), '')">
 
         <div class="like_icon">
           <i class="fa-solid fa-thumbs-up activi"><fa-icon [icon]="faThumbsUp"></fa-icon></i>
@@ -87,29 +89,56 @@
           <i class="fa-solid fa-camera"><fa-icon [icon]="faCamera"></fa-icon></i>
           <i class="fa-regular fa-note-sticky"><fa-icon [icon]="faNoteSticky"></fa-icon></i>
           </ng-container>
-          <button (click)="postComment()">Post</button>
+          <button (click)="postComment(String(item.id_publication))">Post</button>
         </div>
 
         </div>
 
-
-      <ng-container *ngFor="let itemm of commentService.list$()">
-        <h1>{{itemm.credential_id}}</h1>
-
-      <div class="commentt" *ngIf="item.id_publication == item.id_publication">
-        <div class="user-info">
-          <img src="assets/image/user.jpg" alt="User Avatar">
-          <span class="username"></span>
-        </div>
-        <p class="comment-text">{{itemm.contenu}}</p>
-        <p class="comment-date">{{itemm.date_du_commentaire}}</p>
+      <div class="button-container">
+        <button class="custom-button" (click)="getCommentPubli(Stringg(item.id_publication))">See the comments</button>
       </div>
-        </ng-container>
+
+      <ng-container *ngIf="commentService.listt$() !== null; else noComments">
+        <div *ngFor="let itemm of commentService.listt$()">
+          <div class="commentt" *ngIf="itemm.id_publication.id_publication === item.id_publication">
+            <div class="user-info">
+              <img src="assets/image/user.jpg" alt="User Avatar">
+              <span class="username">{{ itemm.credential_id.username }}</span>
+              <p class="comment-date"> ·
+                 {{ calculateTimeElapsed(itemm.date_du_commentaire) }}</p>
+            </div>
+            <p class="comment-text">{{ itemm.contenu }}</p>
+
+
+            <div class="like" (click)="postLike('',String(itemm.id_commentaire))">
+            <div class="like_icon">
+              <i class="fa-solid fa-thumbs-up activi"><fa-icon [icon]="faThumbsUp"></fa-icon></i>
+              <p>Like</p>
+            </div>
+              <div class="like_icon">
+                <i class="fa-solid fa-message"><fa-icon [icon]="faMessage"></fa-icon></i>
+                <p>Comments</p>
+              </div>
+
+              <div class="like_icon">
+                <i class="fa-solid fa-share"><fa-icon [icon]="faShare"></fa-icon></i>
+                <p>Share</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #noComments>
+        <p>Aucun commentaire disponible.</p>
+      </ng-template>
+
 
     </div>
 
   </ng-container>
-  <!-- Ajoutez d'autres champs que vous avez dans votre objet PublicationPayload -->
+  <!--  -->
 
 
 

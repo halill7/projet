@@ -1,5 +1,7 @@
+import {CredentialDto} from "../../publication/model/credential.dto";
+
 export interface ProfilDto {
-  credential_id: string;
+  credential_id: CredentialDto;
   photo_de_profil: string;
   description: string;
   statut: string;
