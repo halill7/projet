@@ -94,10 +94,6 @@
 
         </div>
 
-      <div class="button-container">
-        <button class="custom-button" (click)="getCommentPubli(Stringg(item.id_publication))">See the comments</button>
-      </div>
-
       <ng-container *ngIf="commentService.listt$() !== null; else noComments">
         <div *ngFor="let itemm of commentService.listt$()">
           <div class="commentt" *ngIf="itemm.id_publication.id_publication === item.id_publication">

@@ -1,4 +1,4 @@
-import {Component, inject, Input} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {PublicationFormComponent} from "../../component/publication-form/publication-form.component";
 import {
@@ -27,7 +27,7 @@ import {PublicationDto} from "../../model/publication.dto";
   templateUrl: './publication-list.component.html',
   styleUrls: ['./publication-list.component.scss']
 })
-export class PublicationListComponent {
+export class PublicationListComponent implements OnInit{
   // Convert to string
   protected readonly String = String;
   protected readonly Stringg = String;
@@ -129,10 +129,6 @@ export class PublicationListComponent {
     };
     console.log('payload',payload);
     this.likeService.likePost(payload as LikePayload).subscribe();
-  }
-
-  getCommentPubli(id:string):void {
-    this.commentService.commentPubliGet(id);
   }
 
   /*getLikePulbli(id:string):void {
