@@ -7,11 +7,13 @@
 
 
 .main {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 10px; /* Ajustez selon vos besoins */
   background: #f5f5f5;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 10px;
+  justify-content: space-between;
+  align-items: start;
+  padding: 10px;
 }
 
 
@@ -61,11 +63,11 @@
 
 
 .center i {
-  font-size: 18px; /* Ajustez selon vos besoins */
+  font-size: 18px;
 }
 
 .right i, .right img {
-  font-size: 16px; /* Ajustez selon vos besoins */
+  font-size: 16px;
 }
 .right img{
   width: 35px;
@@ -83,4 +85,4 @@
 
 
 
-/* ... Autres styles ... */
+

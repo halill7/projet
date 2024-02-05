@@ -44,11 +44,11 @@ export class ProfilParameterComponent {
   }
 
 
-  updateProfil() {
+  updateProfil(id_profil:string) {
 
     console.log("update_profil");
     const payload: ProfilUpdatePayload = {
-      id_profil: "14",
+      id_profil: id_profil,
       ...this.config.formGroup.value
     };
     console.log('payload',payload);
@@ -57,7 +57,5 @@ export class ProfilParameterComponent {
   }
 
 
-
-
-
+  protected readonly String = String;
 }

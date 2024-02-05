@@ -1,6 +1,6 @@
 import {Component, inject, Input, signal, WritableSignal} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { faVideo, faFaceGrin, faImage } from "@fortawesome/free-solid-svg-icons";
+import {CommonModule, DatePipe} from '@angular/common';
+import {faVideo, faFaceGrin, faImage, faPaperPlane, faPaperclip} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {PublicationPayload} from "../../../data/payload/publication.payload";
 import {Payload} from "../../../../shared/core/type";
@@ -23,6 +23,8 @@ export class PublicationFormComponent {
   faImage = faImage;
 
   readonly profilService : ProfilService = inject(ProfilService);
+  //
+  private readonly datePipe:DatePipe = inject(DatePipe);
 
   error$:WritableSignal<string> = signal('')
 
@@ -46,15 +48,31 @@ export class PublicationFormComponent {
     //const payload: Payload = {socialLogin: false,googleHash:'', facebookHash:'', ...this.config.formGroup.value};
     const payload: PublicationPayload = {
       credential_id: 'some',
-      date_de_publication: this.dateFormatee,
-      type_de_publication: "test",
+      date_de_publication: this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+      type_de_publication: "text",
       ...this.config.formGroup.value
 
     };
-  console.log('payload',payload);
-   this.publicationService.publicationPost(payload as PublicationPayload).subscribe();
+    console.log('payload',payload);
+    this.publicationService.publicationPost(payload as PublicationPayload).subscribe();
+    //location.reload();
 
 
+  }
+
+  protected readonly faPaperPlane = faPaperPlane;
+  protected readonly faPaperclip = faPaperclip;
+
+  selectedFile: File | null = null;
+
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files ? event.target.files[0] : null;
+  }
+
+  uploadImage() {
+
+    //this.publicationService.publicationGetUpload(this.selectedFile).subscribe();
   }
 }
 

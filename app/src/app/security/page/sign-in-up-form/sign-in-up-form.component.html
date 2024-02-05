@@ -13,4 +13,10 @@
     <button (click)="save()">{{btnLabel}}</button>
   </div>
 
+  <ng-container *ngIf="title == 'Connexion'">
+  <div class="signup-link">
+    Vous n’avez pas de compte ? <a (click)="redirectSignup()">Inscrivez-vous</a>
+  </div>
+  </ng-container>
+
 </div>

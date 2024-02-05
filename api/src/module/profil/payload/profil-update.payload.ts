@@ -22,11 +22,6 @@ export class ProfilUpdatePayload {
     @IsOptional()
     statut: string;
     @ApiProperty()
-    @IsEmail()
-    @IsOptional()
-    @Length(1, 50)
-    email: string;
-    @ApiProperty()
     @IsOptional()
     @Length(1, 50)
     nom: string;

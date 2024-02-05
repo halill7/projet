@@ -7,20 +7,16 @@
 
 
 .main {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 10px;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 10px; /* Ajustez selon vos besoins */
+  align-items: start;
+  padding: 10px;
   background: #f5f5f5;
 }
 
-.mainn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px; /* Ajustez selon vos besoins */
-  background: #fff;
-}
+
 
 .left, .center, .right {
   display: flex;

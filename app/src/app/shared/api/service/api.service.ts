@@ -26,10 +26,14 @@ export class ApiService {
   post(partURL: ApiURI, payload: Payload): Observable<ApiResponse> {
     return this.handle(this.http.post(`${this.baseURL}${partURL}`, payload));
   }
+
+  postt(partURL: ApiURI, file:FormData): Observable<ApiResponse> {
+    return this.handle(this.http.post(`${this.baseURL}${partURL}`, file));
+  }
   put(partURL: ApiURI, payload: Payload): Observable<ApiResponse> {
     return this.handle(this.http.put(`${this.baseURL}${partURL}`, payload));
   }
-  delete(partURL: ApiURI): Observable<ApiResponse> {
+  delete(partURL: string): Observable<ApiResponse> {
     return this.handle(this.http.delete(`${this.baseURL}${partURL}`));
   }
   private handle(obs: Observable<any>): Observable<ApiResponse> {

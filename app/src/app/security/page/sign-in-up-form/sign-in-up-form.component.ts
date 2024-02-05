@@ -9,12 +9,9 @@ import {Payload} from "../../../shared/core/type";
 import {SignInPayload} from "../../data/payload";
 import {SignupPayload} from "../../data/payload/sign-up.payload";
 import {ApiResponse} from "../../../shared/api/service/api.response";
-import {DashboardRouterComponent} from "../../../dashboard/router/dashboard-router/dashboard-router.component";
 import {AppNode} from "../../../shared/routes/enum/node.enum";
 import {Router} from "@angular/router";
-import {ApiURI} from "../../../shared/api/enum";
 import {ApiService} from "../../../shared/api/service/api.service";
-import {Token} from "../../../shared/api/model/token.interface";
 import {TokenService} from "../../../shared/api/model/token.service";
 
 @Component({
@@ -89,5 +86,8 @@ export class SignInUpFormComponent implements OnInit{
   }
 
 
-
+  redirectSignup() {
+    const combinedNode = AppNode.PUBLIC + '/' +  AppNode.SIGN_UP ;
+    this.router.navigate([combinedNode]).then();
+  }
 }

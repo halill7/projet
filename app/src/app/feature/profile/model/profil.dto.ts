@@ -8,4 +8,5 @@ export interface ProfilDto {
   email: string;
   nom: string;
   prenom: string;
+  id_profil: string;
 }

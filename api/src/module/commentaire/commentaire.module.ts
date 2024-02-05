@@ -12,10 +12,12 @@ import {TokenService} from "../../security/jwt/token.service";
 import {Commentaire} from "./entity/commentaire.entity";
 import {CommentaireService} from "./service/commentaire.service";
 import {CommentaireController} from "./controller/commentaire.controller";
+import {ProfilService} from "../profil/service/profil.service";
+import {Profil} from "../profil/entity/profil.entity";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Commentaire,Credential, Token, Address])],
+    imports: [TypeOrmModule.forFeature([Commentaire,Credential, Token, Address, Profil])],
     controllers: [CommentaireController, SecurityController],
-    providers: [CommentaireService,SecurityService, TokenService]
+    providers: [CommentaireService,SecurityService, TokenService, ProfilService]
 })
 export class CommentaireModule {}

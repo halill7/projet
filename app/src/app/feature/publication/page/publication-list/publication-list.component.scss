@@ -65,7 +65,7 @@
 }
 
 .friends_post .friend_post_top .menu:hover {
-  background: #efefef;
+  background: darkred;
   cursor: pointer;
 }
 
@@ -86,7 +86,7 @@
 .friends_post .info {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 10px 0;
 }
 
@@ -108,12 +108,15 @@
 .friends_post .info .comment {
   display: flex;
   align-items: center;
+
+
 }
 
 .friends_post .info .comment p {
   padding: 0 12px;
   font-size: 15px;
   color: #919191;
+
 }
 
 .friends_post hr {
@@ -161,6 +164,7 @@
   object-fit: cover;
   object-position: center;
   margin-right: 15px;
+
 }
 
 .friends_post .comment_warpper .circle {
@@ -192,6 +196,7 @@
 .friends_post .comment_warpper .comment_search i {
   padding: 0 5px;
   color: #919191;
+
 }
 
 
@@ -201,6 +206,7 @@
   display: flex;
   align-items: center;
   position: relative;
+
 }
 
 .comment_search input[type="text"] {
@@ -210,12 +216,14 @@
   width: 80%;
   margin-right: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
 }
 
 .comment_search button,
 .comment_search i {
   flex: 1;
   cursor: pointer;
+
 }
 
 .comment_search button {
@@ -226,13 +234,16 @@
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+
   &:hover {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+
+    transform: scale(1.2);
   }
 }
 
-.comment_search button:hover {
-
+.comment_search button.active {
+  animation: likeAnimation 0.5s ease;
 }
 
 .comment_search i {
@@ -246,21 +257,19 @@
   border-radius: 8px;
   padding: 10px;
   margin: 20px auto;
-  width: 80%;
+  width: 85%;
   max-width: 600px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 
-
   &:hover {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    background: #efefef;
+    cursor: pointer;
   }
 }
 
-.user-info {
-  display: flex;
-  align-items: center;
-}
+
 
 .user-info img {
   width: 40px;
@@ -274,7 +283,10 @@
 }
 
 .comment-text {
-  margin-top: 5px;
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
 }
 
 .comment-date {
@@ -311,5 +323,124 @@
 .custom-button:hover {
   background-color: #2980b9;
 }
+
+
+
+
+.commentt:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.commentt:hover .user-avatar {
+  transform: scale(1.1);
+}
+
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.like {
+  display: flex;
+}
+
+.like-icon {
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.activi {
+  color: blue;
+}
+
+@keyframes likeAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.like_icon {
+  cursor: pointer;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+.like_icon:hover {
+  transform: scale(1.2);
+}
+
+.like_icon.active {
+  animation: likeAnimation 0.5s ease;
+}
+
+@keyframes likeAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.button {
+  animation: likeAnimation 0.5s ease;
+}
+
+.like_icon.active {
+  animation: likeAnimation 0.5s ease; /* Applique l'animation lorsque le bouton est activé (like ajouté) */
+}
+
+
+
+
+
+
 
 

@@ -57,6 +57,18 @@ export class CommentaireService {constructor(@InjectRepository(Commentaire) priv
         throw new Error('Aucun commentaire trouvé pour l\'identifiant de la publication fourni.');
     }
 
+
+    async countCommentairePubli(id: string): Promise<number> {
+        const result = await this.repository.count({ where: { id_publication: id } });
+
+        if (!isNil(result)) {
+            return result;
+        }
+
+        // Exception here
+        throw new Error("Erreur lors du comptage des likes de la publication");
+    }
+
     async countCommentaire(id: string): Promise<number> {
         const result = await this.repository.count({ where: { credential_id: id } });
 
@@ -101,10 +113,10 @@ export class CommentaireService {constructor(@InjectRepository(Commentaire) priv
     }
 
 
-    async getLastCommentDate(user:Credential): Promise<Commentaire> {
+    async getLastCommentDate(): Promise<Commentaire> {
         const lastComment = await this.repository.findOne({
             where: {
-                credential_id: user.credential_id,  // Remplacez userId par la condition que vous souhaitez utiliser
+
             },
             order: {
                 date_du_commentaire: 'DESC', id_commentaire: 'DESC',
@@ -112,5 +124,16 @@ export class CommentaireService {constructor(@InjectRepository(Commentaire) priv
         });
 
         return lastComment ? lastComment : null;
+    }
+
+    async countComments(user:Credential): Promise<number> {
+        const result = await this.repository.count({ where: { credential_id: user.credential_id } });
+
+        if (!isNil(result)) {
+            return result;
+        }
+
+        // Exception here
+        throw new Error("Erreur lors du comptage des likes de la publication");
     }
 }

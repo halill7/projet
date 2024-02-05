@@ -38,8 +38,8 @@ export class LikeController {
     }
 
     @Get('last-like')
-    getLastLikeDate(@User() user: Credential,): Promise<Like> {
-        return this.service.getLastLikeDate(user);
+    getLastLikeDate(): Promise<Like> {
+        return this.service.getLastLikeDate();
     }
     @Get('list')
     getAll(): Promise<Like[]> {

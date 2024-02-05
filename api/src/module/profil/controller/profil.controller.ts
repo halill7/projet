@@ -31,7 +31,7 @@ export class ProfilController {
 
     @Get('detail-profil')
     detailCredential(@User() user :  Credential): Promise<Profil> {
-        return this.service.detailCredential(user.credential_id);
+        return this.service.detailCredential(user);
     }
     @Get('list')
     getAll(): Promise<Profil[]> {

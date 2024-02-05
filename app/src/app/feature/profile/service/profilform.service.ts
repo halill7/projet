@@ -12,7 +12,7 @@ export class ProfilFormService {
     return new FormGroup<any>({
       [ProfilFormType.NOM]: new FormControl('', [Validators.minLength(0), Validators.maxLength(10)]),
       [ProfilFormType.PRENOM]: new FormControl('', [Validators.minLength(0), Validators.maxLength(10)]),
-      [ProfilFormType.EMAIL]: new FormControl('', [Validators.minLength(0), Validators.maxLength(10)]),
+      [ProfilFormType.PHOTO]: new FormControl('', [Validators.minLength(0), Validators.maxLength(10)]),
       [ProfilFormType.DESCRIPTION]: new FormControl('', [Validators.minLength(0), Validators.maxLength(10)]),
       [ProfilFormType.STATUT]: new FormControl('', [Validators.minLength(0), Validators.maxLength(10)]),
     })
@@ -49,8 +49,8 @@ export class ProfilFormService {
   public static getEmailField(formGroup: FormGroup): ProfilField {
     return {
       inputType: 'text',
-      placeHolder: 'Votre email',
-      control: ProfilFormService.getFormControl(formGroup, ProfilFormType.EMAIL)
+      placeHolder: 'Votre photo',
+      control: ProfilFormService.getFormControl(formGroup, ProfilFormType.PHOTO)
     }
   }
 

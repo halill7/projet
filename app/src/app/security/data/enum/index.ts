@@ -23,7 +23,7 @@ export enum CommentFormType {
 export enum ProfilFormType {
   NOM = 'nom',
   PRENOM = 'prenom',
-  EMAIL = 'email',
+  PHOTO = 'photo_de_profil',
   DESCRIPTION = 'description',
   STATUT = 'statut'
 }

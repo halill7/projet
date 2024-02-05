@@ -11,7 +11,7 @@ export class CommentFormService {
 
   public static commentFormGroup(): FormGroup {
     return new FormGroup<any>({
-      [CommentFormType.CONTENU]: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]),
+      [CommentFormType.CONTENU]: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(500)]),
 
     })
   }

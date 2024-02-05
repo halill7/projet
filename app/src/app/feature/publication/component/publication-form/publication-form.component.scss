@@ -3,7 +3,7 @@
   width: 100%;
   height: auto;
   background: #fff;
-  padding: 10px 0px;
+  padding: 20px 0px 0px 3px;
   border-radius: 10px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
   max-width: 650px;
@@ -50,15 +50,16 @@
 
 
 .my_post .post_bottom{
-  width: 95%;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 5px auto;
+
 }
 
 .my_post .post_bottom .post_icon{
   display: flex;
-  align-items: center;
+  align-items: stretch;
   margin: 0 auto;
   padding: 7px 40px;
   cursor: pointer;
@@ -118,12 +119,12 @@
 }
 
 .my_post .post_top button {
-  padding: 10px 15px;
-  font-size: 16px;
+  padding: 10px 10px;
+  font-size: 15px;
   color: #fff;
   background-color: #007bff;
   border: none;
-  border-radius: 30px;
+  border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s;
 
@@ -156,7 +157,7 @@
 button {
   width: 10%;
   padding: 3px;
-  font-size: 20px;
+  font-size: 15px;
   color: #fff;
   background-color: #007bff;
   border: none;
@@ -173,3 +174,142 @@ button {
     cursor: not-allowed;
   }
 }
+
+
+.file-upload-wrapper {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  font-size: 15px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 10px 10px;
+  background-color: #efefef;
+  overflow: hidden;
+  margin: 0 5px;
+}
+
+.custom-file-upload input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.custom-file-upload:hover {
+  background-color: #0056b3;
+}
+
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.post-input,
+.file-input,
+.post-button {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.post_bottom,
+.post_icon {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.post_icon:first-child {
+  animation: fadeInLeft 0.5s ease forwards;
+}
+
+.post_icon:last-child {
+  animation: fadeInRight 0.5s ease forwards;
+}
+
+#user-name {
+  animation: fadeInDown 0.5s ease forwards;
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.new-post {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+
+
+
+
+
+
+

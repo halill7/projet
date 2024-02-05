@@ -45,7 +45,7 @@ export class LikeService {
     this.api.gett(url).pipe(tap((response:ApiResponse)=>{
       //améliorer voir les notes de cours
       this.countLikePubli$.set(response.data);
-      //console.log(response);
+      console.log(response);
     })).subscribe()
 
   }
@@ -62,7 +62,7 @@ export class LikeService {
     this.api.get(ApiURI.LIKE_LAST).pipe(tap((response:ApiResponse)=>{
       //améliorer voir les notes de cours
       this.lastLike$.set(response.data);
-      console.log(response);
+      //console.log(response);
     })).subscribe();
   }
 

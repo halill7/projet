@@ -42,14 +42,23 @@ export class CommentaireController {
         return this.service.countCommentaire(id);
     }
 
+    @Get('count-commentaire-publication/:id')
+    countCommentairePubli(@Param('id') id: string): Promise<Number> {
+        return this.service.countCommentairePubli(id);
+    }
     @Get('detail-commentaire')
     detailCredential(@User() user :  Credential): Promise<Commentaire[]> {
         return this.service.detailCredential(user.credential_id);
     }
 
     @Get('last-comment')
-    getLastCommentDate(@User() user: Credential,): Promise<Commentaire> {
-        return this.service.getLastCommentDate(user);
+    getLastCommentDate(): Promise<Commentaire> {
+        return this.service.getLastCommentDate();
+    }
+
+    @Get('count-comments')
+    countComments(@User() user: Credential,): Promise<Number> {
+        return this.service.countComments(user);
     }
     @Get('list')
     getAll(): Promise<Commentaire[]> {

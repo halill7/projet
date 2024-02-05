@@ -31,7 +31,7 @@ export class PublicationFormService {
   public static getContenuField(formGroup:FormGroup): PublicationField {
     return {
       inputType: 'text',
-      placeHolder: 'Explain yourself',
+      placeHolder: 'Explain yourself...',
       control: PublicationFormService.getFormControl(formGroup, PublicationFormType.CONTENU)
     }
   }

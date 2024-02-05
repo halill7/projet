@@ -12,25 +12,32 @@
 
         <div class="img_and_name">
 
+          <ng-container *ngIf="profilService.Detail$() as profil">
           <img src="assets/image/user.jpg">
 
           <div class="friends_name">
-            <ng-container *ngIf="profilService.Detail$() as profil">
+
             <p class="friends_name">
               {{item.credential_id.username}}
             </p>
-            </ng-container>
+
             <p class="time">{{item.date_de_publication}}<i class="fa-solid fa-user-group"><fa-icon [icon]="faUserGroup"></fa-icon></i></p>
           </div>
+          </ng-container>
 
 
         </div>
 
-        <div class="menu">
+        <ng-container *ngIf="profilService.Detail$() as detail">
+          <ng-container *ngIf="detail.credential_id.username === item.credential_id.username">
+            <div class="menu" (click)="showDeleteConfirmation(item.id_publication)">
+              <i class="trash" (click)="deletePost(String(item.id_publication))"><fa-icon [icon]="faTrashCan"></fa-icon></i>
+            </div>
 
-          <i class="fa-solid fa-ellipsis"><fa-icon [icon]="faTrashCan"></fa-icon></i>
 
-        </div>
+
+          </ng-container>
+        </ng-container>
 
       </div>
       <p>{{item.contenu}}</p>
@@ -38,17 +45,24 @@
 
       <div class="info">
 
-        <div class="emoji_img">
-          <img src="assets/image/like.png">
-          <img src="assets/image/haha.png">
-          <img src="assets/image/heart.png">
-          <p></p>
-        </div>
+        <ng-container *ngIf="likeService.countLikePubli$() as countt">
+        <div class="emoji_img" *ngFor="let itemm of commentService.listt$() let isFirst = first">
 
-        <div class="comment">
-          <p>421 Comments</p>
-          <p>1.3K Shares</p>
+          <ng-container *ngIf="item.id_publication === itemm.id_publication.id_publication">
+            <p *ngIf="isFirst">{{countt}} Like</p>
+          </ng-container>
         </div>
+        </ng-container>
+
+        <ng-container *ngIf="commentService.countComments$() as count">
+          <div class="comment" *ngFor="let itemm of commentService.listt$(); let isFirst = first">
+            <ng-container *ngIf="item.id_publication === itemm.id_publication.id_publication">
+              <p *ngIf="isFirst">{{count}} Comments</p>
+            </ng-container>
+
+          </div>
+
+        </ng-container>
 
       </div>
 
@@ -56,15 +70,15 @@
 
       <!-- Ajouté un paramètre à la méthode postLike(id_publication) -->
 
-      <div class="like" (click)="postLike(String(item.id_publication), '')">
+      <div class="like">
 
-        <div class="like_icon">
+        <div class="like_icon" (click)="postLike(String(item.id_publication), '')">
           <i class="fa-solid fa-thumbs-up activi"><fa-icon [icon]="faThumbsUp"></fa-icon></i>
           <p>Like</p>
         </div>
 
 
-        <div class="like_icon">
+        <div class="like_icon" (click)="getCommentPubli(Stringg(item.id_publication))">
           <i class="fa-solid fa-message"><fa-icon [icon]="faMessage"></fa-icon></i>
           <p>Comments</p>
         </div>
@@ -89,10 +103,11 @@
           <i class="fa-solid fa-camera"><fa-icon [icon]="faCamera"></fa-icon></i>
           <i class="fa-regular fa-note-sticky"><fa-icon [icon]="faNoteSticky"></fa-icon></i>
           </ng-container>
-          <button (click)="postComment(String(item.id_publication))">Post</button>
+          <button (click)="postComment(String(item.id_publication))"><fa-icon [icon]="faPaperPlane"></fa-icon></button>
         </div>
 
         </div>
+
 
       <ng-container *ngIf="commentService.listt$() !== null; else noComments">
         <div *ngFor="let itemm of commentService.listt$()">
@@ -101,16 +116,16 @@
               <img src="assets/image/user.jpg" alt="User Avatar">
               <span class="username">{{ itemm.credential_id.username }}</span>
               <p class="comment-date"> ·
-                 {{ calculateTimeElapsed(itemm.date_du_commentaire) }}</p>
+                {{ calculateTimeElapsed(itemm.date_du_commentaire) }}</p>
             </div>
             <p class="comment-text">{{ itemm.contenu }}</p>
 
 
-            <div class="like" (click)="postLike('',String(itemm.id_commentaire))">
-            <div class="like_icon">
-              <i class="fa-solid fa-thumbs-up activi"><fa-icon [icon]="faThumbsUp"></fa-icon></i>
-              <p>Like</p>
-            </div>
+            <div class="like">
+              <div class="like_icon" (click)="postLike('',String(itemm.id_commentaire))">
+                <i class="fa-solid fa-thumbs-up activi"><fa-icon [icon]="faThumbsUp"></fa-icon></i>
+                <p>Like</p>
+              </div>
               <div class="like_icon">
                 <i class="fa-solid fa-message"><fa-icon [icon]="faMessage"></fa-icon></i>
                 <p>Comments</p>
@@ -124,6 +139,7 @@
 
           </div>
         </div>
+
       </ng-container>
 
       <ng-template #noComments>

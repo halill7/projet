@@ -3,9 +3,10 @@
 <div class="left">
 
   <div (click)="redirectProfil()" class="img">
-    <img src="assets/image/user.jpg" alt="">
+
     <ng-container *ngIf="profilService.Detail$() as profil">
-            <p>{{profil.nom}}</p>
+      <img src="assets/image/{{profil.photo_de_profil}}" alt="">
+            <p>{{profil.credential_id.username}}</p>
     </ng-container>
   </div>
 
@@ -45,10 +46,7 @@
     <img src="assets/image/logout.png">
     <p>Logout</p>
   </div>
-  <div class="img">
-    <img src="assets/image/down_arrow.png">
-    <p>See more</p>
-  </div>
+
 
   <hr>
 
@@ -58,18 +56,19 @@
 
     <ng-container *ngIf="commentaireService.lastComment$() as last">
     <div class="shortcuts">
-      <p>Last comment : {{calculateTimeElapsed(last.date_du_commentaire)}}</p>
+      <p>Last <span><fa-icon [icon]="faMessage"></fa-icon></span> : {{calculateTimeElapsed(last.date_du_commentaire)}}</p>
     </div>
     </ng-container>
     <ng-container *ngIf="likeService.lastLike$() as last">
     <div class="shortcuts">
-      <p>Last like : {{calculateTimeElapsed(last.date_du_like)}}</p>
+      <p>Last <span><fa-icon [icon]="faThumbsUp"></fa-icon></span> : {{calculateTimeElapsed(last.date_du_like)}}</p>
     </div>
     </ng-container>
 
     <ng-container *ngIf="publicationService.lastPost$() as last">
     <div class="shortcuts">
-      <p>Last Post : {{calculateTimeElapsed(last.date_de_publication)}}</p>
+      <p>Last <span><fa-icon [icon]="faNewspaper"></fa-icon></span> : {{calculateTimeElapsed(last.date_de_publication)}}</p>
+
     </div>
     </ng-container>
     <div class="profil" (click)="redirectProfil()">

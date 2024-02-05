@@ -16,11 +16,11 @@ export class Like extends BaseEntity{
     @JoinColumn({referencedColumnName: 'credential_id', name: 'credential_id'})
     credential_id: string;
 
-    @ManyToOne(() => Publication, {eager: false})
+    @ManyToOne(() => Publication, {eager: false, onDelete:"CASCADE"})
     @JoinColumn({referencedColumnName: 'id_publication', name: 'id_publication'})
     id_publication: string;
 
-    @ManyToOne(() => Commentaire, {eager: false, nullable: true})
+    @ManyToOne(() => Commentaire, {eager: false, nullable: true, onDelete:"CASCADE"})
     @JoinColumn({referencedColumnName: 'id_commentaire', name: 'id_commentaire'})
     id_commentaire: string;
 

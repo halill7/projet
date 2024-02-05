@@ -14,8 +14,8 @@ import {PublicationController} from "./controller/publication.controller";
 import {PublicationService} from "./service/publication.service";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Publication,Credential, Token, Address])],
+    imports: [TypeOrmModule.forFeature([Publication, Credential, Token, Address, Profil])],
     controllers: [PublicationController, SecurityController],
-    providers: [PublicationService,SecurityService, TokenService]
+    providers: [PublicationService, SecurityService, TokenService, ProfilService], // Assurez-vous que ProfilService est bien ici
 })
 export class PublicationModule {}

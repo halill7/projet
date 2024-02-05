@@ -1,3 +1,8 @@
+import {
+    PublicationCountLikesException,
+    PublicationListException
+} from "../../module/publication/exception/publication.exception";
+
 export enum ApiCodeResponse {
     TEST = 'api.result.test',
     STOCK_DETAIL_SUCCESS = 'api.error.stock-detail',
@@ -29,5 +34,17 @@ export enum ApiCodeResponse {
 
 
     PAYLOAD_IS_NOT_VALID = 'api.security.error.payload-is-not-valid',
+
+
+    // Posts
+    PUBLICATION_CREATE_ERROR= 'api.security.error.publication-not-created',
+    PUBLICATION_DELETE_ERROR= 'api.security.error.publication-not-deleted',
+    PUBLICATION_UPDATE_ERROR= 'api.security.error.publication-not-updated',
+    PUBLICATION_FIND_POST_LIKES_ERROR= 'api.security.error.publication-post-likes-not-found',
+    PUBLICATION_LIST_ERROR= 'api.security.error.publication-list',
+    PUBLICATION_FIND_POST_ERROR= 'api.security.error.publication-find-post-error',
+    PUBLICATION_DETAIL_ERROR= 'api.security.error.publication-detail-error',
+
+
 
 }

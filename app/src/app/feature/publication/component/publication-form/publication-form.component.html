@@ -8,12 +8,20 @@
       <div class="my_post">
 
         <div class="post_top" [formGroup]="config.formGroup">
-          <img src="assets/image/user.jpg" alt="User Image">
+          <ng-container *ngIf="profilService.Detail$() as profil">
+            <img src="assets/image/{{profil.photo_de_profil}}" alt="">
+          </ng-container>
 
           <ng-container *ngFor="let field of config.fields">
           <input [type]="field.inputType" [formControl]='field.control' [placeholder]="field.placeHolder">
+            <div class="file-upload-wrapper">
+            <div class="custom-file-upload">
+              <fa-icon [icon]="faPaperclip"></fa-icon>
+              <input type="file" accept="image/*" (click)="uploadImage()">
+            </div>
+            </div>
           </ng-container>
-          <button (click)="save()">Post</button>
+          <button (click)="save()"><fa-icon [icon]="faPaperPlane"></fa-icon></button>
 
 
           <br>
@@ -41,6 +49,7 @@
         <i class="fa-regular fa-face-grin yellow"><fa-icon [icon]="faFaceGrin"></fa-icon></i>
         <p>Feeling/activity</p>
       </div>
+
 
     </div>
   </div>

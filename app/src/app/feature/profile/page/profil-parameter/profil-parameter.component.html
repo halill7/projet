@@ -20,6 +20,7 @@
           <p>Email: <span id="user-email">{{profil.email}}</span></p>
           <p>Description: <span id="description">{{profil.description}}</span></p>
           <p>Statut: <span id="statut">{{profil.statut}}</span></p>
+          <p>Photo de profil: <span id="profil">{{profil.photo_de_profil}}</span></p>
           <!-- Ajoutez d'autres informations selon vos besoins -->
         </div>
 
@@ -28,23 +29,23 @@
         <ng-container *ngFor="let field of config.fields; let first = first">
           <div *ngIf="first" id="edit-form" style="">
             <label>Nom:</label>
-            <input [type]="field.inputType" [formControl]="field.control" [placeholder]="field.placeHolder" [value]="profil.nom">
+            <input [type]="field.inputType" [formControl]="field.control" [placeholder]="field.placeHolder">
 
             <label>Prénom:</label>
-            <input [type]="config.fields[1].inputType" [formControl]='config.fields[1].control' [placeholder]="config.fields[1].placeHolder" [value]="profil.prenom">
-
-            <label>Email:</label>
-            <input [type]="config.fields[2].inputType" [formControl]='config.fields[2].control' [placeholder]="config.fields[2].placeHolder" [value]="profil.email">
+            <input [type]="config.fields[1].inputType" [formControl]='config.fields[1].control' [placeholder]="config.fields[1].placeHolder">
 
             <label>Description:</label>
-            <input [type]="config.fields[3].inputType" [formControl]='config.fields[3].control' [placeholder]="config.fields[3].placeHolder" [value]="profil.description">
+            <input [type]="config.fields[3].inputType" [formControl]='config.fields[3].control' [placeholder]="config.fields[3].placeHolder">
 
             <label>Statut:</label>
-            <input [type]="config.fields[4].inputType" [formControl]='config.fields[4].control' [placeholder]="config.fields[4].placeHolder" [value]="profil.statut">
+            <input [type]="config.fields[4].inputType" [formControl]='config.fields[4].control' [placeholder]="config.fields[4].placeHolder">
+
+            <label>Photo de profil:</label>
+            <input [type]="config.fields[2].inputType" [formControl]='config.fields[2].control' [placeholder]="config.fields[2].placeHolder">
 
             <!-- Ajoutez d'autres champs de saisie selon vos besoins -->
 
-            <button (click)="updateProfil()">Enregistrer</button>
+            <button (click)="updateProfil(String(profil.id_profil))">Enregistrer</button>
           </div>
         </ng-container>
 

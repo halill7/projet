@@ -1,18 +1,18 @@
 import {InjectRepository} from "@nestjs/typeorm";
-import {Profil} from "../../profil/entity/profil.entity";
 import {FindManyOptions, Repository} from "typeorm";
-import {SecurityService} from "../../../security/service/security.service";
-import {ProfilCreatePayload} from "../../profil/payload/profil-create.payload";
 import {Builder} from "builder-pattern";
 import {isNil} from "lodash";
-import {ProfilUpdatePayload} from "../../profil/payload/profil-update.payload";
 import {Publication} from "../entity/publication.entity";
 import {PublicationUpdatePayload} from "../payload/publication-update.payload";
 import {PublicationCreatePayload} from "../payload/publication-create.payload";
 import {TokenService} from "../../../security/jwt/token.service";
 import {Credential} from "../../../security/model/entity/credential.entity";
-import {LikeCreatePayload} from "../../like/payload/like-create.payload";
-import {Like} from "../../like/entity/like.entity";
+import {
+    PublicationCountLikesException,
+    PublicationCreateException,
+    PublicationDeleteException, PublicationDetailException, PublicationFindPostException, PublicationListException,
+    PublicationUpdateException
+} from "../exception/publication.exception";
 
 export class PublicationService {constructor(@InjectRepository(Publication) private readonly repository:
                                             Repository<Publication>, private readonly securityService: TokenService) {}
@@ -24,18 +24,22 @@ export class PublicationService {constructor(@InjectRepository(Publication) priv
                 .type_de_publication(payload.type_de_publication).build())
                 ;
         } catch (e) {
-            throw null;
+            throw new PublicationCreateException();
         }
     }
 
 
-    async delete(id: string): Promise<void> {
+    async delete(id: string, user:Credential): Promise<void> {
         try {
             const detail = await this.detail(id);
-            await this.repository.remove(detail);
+            const conditions = await this.repository.findOneBy({credential_id: user.credential_id, id_publication: id });
+            if (!(isNil(conditions))) {
+                await this.repository.remove(detail);
+            }
         } catch (e) {
-            throw null;
+            throw new PublicationDeleteException();
         }
+
     }
     async detail(id: string): Promise<Publication> {
         const result = await this.repository.findOneBy({id_publication: id});
@@ -43,7 +47,7 @@ export class PublicationService {constructor(@InjectRepository(Publication) priv
             return result;
         }
         // Exception here
-        throw null;
+        throw new PublicationDetailException();
     }
 
     async detailCredential(id: string): Promise<Publication[]> {
@@ -58,7 +62,7 @@ export class PublicationService {constructor(@InjectRepository(Publication) priv
         }
 
         // Exception here
-        throw new Error('Aucune publication trouvée pour l\'identifiant de la credential fourni.');
+        throw new PublicationFindPostException();
     }
 
     async countPublication(user:Credential): Promise<number> {
@@ -69,14 +73,16 @@ export class PublicationService {constructor(@InjectRepository(Publication) priv
         }
 
         // Exception here
-        throw new Error("Erreur lors du comptage des likes de la publication");
+        throw new PublicationCountLikesException();
     }
 
     async getAll(): Promise<Publication[]> {
         try {
-            return await this.repository.find();
+            return await this.repository.find({order: {
+                id_publication: 'DESC',
+                }});
         } catch (e) {
-            throw null;
+            throw new PublicationListException();
         }
     }
     async update(payload: PublicationUpdatePayload): Promise<Publication> {
@@ -86,14 +92,14 @@ export class PublicationService {constructor(@InjectRepository(Publication) priv
             detail.type_de_publication = payload.type_de_publication;
             return await this.repository.save(detail);
         } catch (e) {
-            throw null;
+            throw new PublicationUpdateException();
         }
     }
 
-    async getLastPublicationDate(user:Credential): Promise<Publication> {
+    async getLastPublicationDate(): Promise<Publication> {
         const lastPublication = await this.repository.findOne({
             where: {
-                credential_id: user.credential_id,
+
             },
             order: {
                 date_de_publication: 'DESC', id_publication: 'DESC',

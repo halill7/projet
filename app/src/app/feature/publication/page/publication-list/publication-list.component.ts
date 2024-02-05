@@ -1,10 +1,30 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
+
 import {PublicationFormComponent} from "../../component/publication-form/publication-form.component";
 import {
-  faBell, faBullhorn, faScissors, faVideo, faMagnifyingGlass, faHouse,
-  faTv, faStore, faUser, faListUl, faMessage, faMoon, faFaceGrin, faImage, faUserGroup,
-  faEllipsis, faThumbsUp, faShare, faFaceSmile, faMagnifyingGlassArrowRight, faCamera, faNoteSticky, faTrashCan
+  faBell,
+  faBullhorn,
+  faScissors,
+  faVideo,
+  faMagnifyingGlass,
+  faHouse,
+  faTv,
+  faStore,
+  faUser,
+  faListUl,
+  faMessage,
+  faMoon,
+  faFaceGrin,
+  faImage,
+  faUserGroup,
+  faEllipsis,
+  faThumbsUp,
+  faShare,
+  faFaceSmile,
+  faMagnifyingGlassArrowRight,
+  faCamera,
+  faNoteSticky,
+  faTrashCan,
+  faPaperclip, faPaperPlane
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {StoryComponent} from "../story/story.component";
@@ -17,7 +37,8 @@ import {CommentaireService} from "../../../service/comment/commentaire.service";
 import {ReactiveFormsModule} from "@angular/forms";
 import {LikePayload} from "../../../data/payload/like.payload";
 import {LikeService} from "../../../service/like/like.service";
-import {PublicationDto} from "../../model/publication.dto";
+import {CommonModule, DatePipe} from "@angular/common";
+import {Component, inject, Input, OnInit} from "@angular/core";
 
 
 @Component({
@@ -32,6 +53,7 @@ export class PublicationListComponent implements OnInit{
   protected readonly String = String;
   protected readonly Stringg = String;
 
+
   // Inputs
   @Input({required:true}) config!: PostPublication;
   @Input({required:true}) confi!: PostComment;
@@ -45,6 +67,9 @@ export class PublicationListComponent implements OnInit{
   readonly commentService: CommentaireService = inject(CommentaireService);
   readonly likeService: LikeService = inject(LikeService);
   readonly profilService : ProfilService = inject(ProfilService);
+
+  //
+  readonly datePipe:DatePipe = inject(DatePipe);
   // Icone
   faMessage = faMessage;
   faUserGroup = faUserGroup;
@@ -54,6 +79,9 @@ export class PublicationListComponent implements OnInit{
   faFaceSmile = faFaceSmile;
   faCamera = faCamera;
   faNoteSticky = faNoteSticky;
+  faTrashCan = faTrashCan;
+
+
 
 
 
@@ -64,7 +92,10 @@ export class PublicationListComponent implements OnInit{
     this.publicationService.publicationGet();
     this.profilService.profilGet();
     this.commentService.commentGet();
-
+    this.publicationService.publicationDelete("");
+    this.publicationService.publicationDetail();
+    this.likeService.countLikePubli("");
+    this.commentService.countCommentsPost("");
   }
 
   // Date
@@ -108,7 +139,7 @@ export class PublicationListComponent implements OnInit{
     //const payload: Payload = {socialLogin: false,googleHash:'', facebookHash:'', ...this.config.formGroup.value};
     const payload: CommentPayload = {
       credential_id: 'some',
-      date_du_commentaire: this.dateFormatee,
+      date_du_commentaire: this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss'),
       id_publication: id,
       ...this.confi.formGroup.value
 
@@ -129,14 +160,51 @@ export class PublicationListComponent implements OnInit{
     };
     console.log('payload',payload);
     this.likeService.likePost(payload as LikePayload).subscribe();
+    this.likeService.countLikePubli(id_publi);
   }
+
+
+  getCommentPubli(id:string):void {
+    console.log("get")
+    this.commentService.commentPubliGet(id);
+    this.commentService.countCommentsPost(id);
+  }
+
+
+  // Déclarez les variables nécessaires
+  showDeleteAlert: boolean = false;
+  deleteItemId: string = '';
+
+// Ajoutez la méthode pour afficher l'alerte de suppression
+  showDeleteConfirmation(itemId: string): void {
+    this.showDeleteAlert = true;
+    this.deleteItemId = itemId;
+  }
+
+// Ajoutez la méthode pour annuler la suppression
+  cancelDelete(): void {
+    this.showDeleteAlert = false;
+    this.deleteItemId = '';
+  }
+
+// Ajoutez la méthode de suppression
+  deletePost(id_publication: string): void {
+    if (id_publication !== null) {
+      console.log("delete");
+      this.showDeleteAlert = false; // Masquer l'alerte après la suppression
+      this.publicationService.publicationDelete(id_publication);
+    }
+  }
+
+
 
   /*getLikePulbli(id:string):void {
     this.likeService.countLikePubli(id);
   }*/
 
+  protected readonly faPaperclip = faPaperclip;
+  protected readonly faPaperPlane = faPaperPlane;
 
-  protected readonly faTrashCan = faTrashCan;
 }
 
 

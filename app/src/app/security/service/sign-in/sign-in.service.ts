@@ -34,6 +34,9 @@ export class SignInService {
     return this.api.post(ApiURI.SIGN_UP, payload);
   **/
 
+  logOut(): void {
+    this.tokenService.setToken({token: '', refreshToken: '', isEmpty: true});
+  }
 
   signIn(payload: SignInPayload): Observable<ApiResponse> {
     return this.api.post(ApiURI.SIGN_IN, {...payload, socialLogin: false}).pipe(

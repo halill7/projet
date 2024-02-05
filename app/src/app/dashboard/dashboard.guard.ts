@@ -1,9 +1,6 @@
-import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from '@angular/router';
-import {catchError, map, Observable, of} from 'rxjs';
+import {CanActivateFn, Router} from '@angular/router';
 import {inject} from "@angular/core";
-import {TokenService} from "../shared/api/model/token.service";
-import {AppNode} from "../shared/routes/enum/node.enum";
-import {DashboardHomePageComponent} from "./home/page/dashboard-home-page/dashboard-home-page.component";
+
 
 export function DashboardGuard(redirectRoute: string = ''): CanActivateFn {
   return () => {

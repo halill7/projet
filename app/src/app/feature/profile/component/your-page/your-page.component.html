@@ -35,6 +35,15 @@
       </div>
     </ng-container>
 
+
+    <ng-container *ngIf="commentService.countComments$() as count">
+    <div class="page_icon">
+      <i class=""><fa-icon [icon]="faMessage"></fa-icon></i>
+
+      <p>Number of comments : {{count}}</p>
+    </div>
+    </ng-container>
+
     </div>
 
   </div>

@@ -27,6 +27,7 @@ export class ProfilService {
     email: '',
     nom: '',
     prenom: '',
+    id_profil: ''
   });
 
   // Creer une methode pour listé
@@ -36,6 +37,7 @@ export class ProfilService {
     this.api.get(ApiURI.PROFIL_DETAIL).pipe(tap((response:ApiResponse)=>{
       //améliorer voir les notes de cours
       this.Detail$.set(response.data);
+      //console.log('payload', response.data);
     })).subscribe()
   }
 

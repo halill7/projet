@@ -6,6 +6,7 @@ import { faBell, faBullhorn, faScissors, faVideo, faMagnifyingGlass, faHouse,
   faEllipsis, faThumbsUp, faShare, faFaceSmile, faMagnifyingGlassArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {AppNode} from "../../../../shared/routes/enum/node.enum";
 import {Router} from "@angular/router";
+import {ProfilService} from "../../../../feature/profile/service/profil.service";
 @Component({
   selector: 'app-homebar',
   standalone: true,
@@ -16,10 +17,6 @@ import {Router} from "@angular/router";
 export class HomebarComponent {
   // Les icones
   faBell = faBell;
-  faBullhorn = faBullhorn;
-  faScissors = faScissors;
-  faVideo = faVideo;
-  faMagnifyingGlass = faMagnifyingGlass;
   faHouse = faHouse;
   faTv = faTv;
   faStore = faStore;
@@ -27,19 +24,16 @@ export class HomebarComponent {
   faListUl = faListUl;
   faMoon = faMoon;
   faMessage = faMessage;
-  faFaceGrin = faFaceGrin;
-  faImage = faImage;
-  faUserGroup = faUserGroup;
-  faEllipsis = faEllipsis;
-  faThumbsUp = faThumbsUp;
-  faShare = faShare;
-  faFaceSmile = faFaceSmile;
-  faMagnifyingGlassArrowRight = faMagnifyingGlassArrowRight;
 
   //
   private readonly router: Router = inject(Router);
+  readonly profilService: ProfilService = inject(ProfilService);
   redirectHome() {
     this.router.navigate([AppNode.AUTHENTICATED]).then();
+  }
+
+  redirectProfile() {
+    this.router.navigate([AppNode.PROFIL]).then();
   }
 
 }

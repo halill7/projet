@@ -8,15 +8,17 @@ import {JwtModule} from "@nestjs/jwt";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {Token} from "./model/entity/token.entity";
 import {Credential} from "./model/entity/credential.entity";
+import {ProfilService} from "../module/profil/service/profil.service";
+import {Profil} from "../module/profil/entity/profil.entity";
 
 @Module({
   imports: [JwtModule.register({
     global: true,
     secret: configManager.getValue(ConfigKey.JWT_TOKEN_SECRET),
     signOptions: {expiresIn: configManager.getValue(ConfigKey.JWT_TOKEN_EXPIRE_IN)},
-  }), TypeOrmModule.forFeature([Credential, Token])],
+  }), TypeOrmModule.forFeature([Credential, Token, Profil])],
   exports: [SecurityService],
-  providers: [SecurityService, TokenService],
+  providers: [SecurityService, TokenService, ProfilService],
   controllers: [SecurityController]
 })
 export class SecurityModule {

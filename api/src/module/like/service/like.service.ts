@@ -93,10 +93,10 @@ export class LikeService {
         }
     }
 
-    async getLastLikeDate(user:Credential): Promise<Like> {
+    async getLastLikeDate(): Promise<Like> {
         const lastLike = await this.repository.findOne({
             where: {
-                credential_id: user.credential_id,
+
             },
             order: {
                 date_du_like: 'DESC', id_like: 'DESC',

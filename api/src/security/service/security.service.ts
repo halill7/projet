@@ -16,12 +16,14 @@ import {Repository} from "typeorm";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Credential} from "../model/entity/credential.entity";
 import {Token} from "../model/entity/token.entity";
-import {JwtService} from '@nestjs/jwt';
+import {ProfilCreatePayload} from "../../module/profil/payload/profil-create.payload";
+import {ProfilService} from "../../module/profil/service/profil.service";
+
 @Injectable()
 export class SecurityService {
 
     constructor(@InjectRepository(Credential) private readonly repository: Repository<Credential>,
-                private readonly tokenService: TokenService) {
+                private readonly tokenService: TokenService, private readonly profilService: ProfilService) {
     }
 
     async detail(id: string): Promise<Credential> {
@@ -101,7 +103,7 @@ export class SecurityService {
         throw new UserNotFoundException();
     }
 
-    async signup(payload: SignupPayload): Promise<Credential | null> {
+    /**async signup(payload: SignupPayload): Promise<Credential | null> {
         const result: Credential | null = await this.repository.findOneBy({username:
             payload.username});
         if (!isNil(result)) {
@@ -118,6 +120,47 @@ export class SecurityService {
                 .mail(payload.mail)
                 .build());
             // Rajouter id_profil à la création d'un compte
+        } catch (e) {
+            throw new SignupException();
+        }
+    }**/
+
+    async signup(payload: SignupPayload): Promise<Credential | null> {
+        const result: Credential | null = await this.repository.findOneBy({ username: payload.username });
+
+        if (!isNil(result)) {
+            throw new UserAlreadyExistException();
+        }
+
+        try {
+            const encryptedPassword = (payload.facebookHash.length === 0 &&
+                payload.googleHash.length === 0) ? await encryptPassword(payload.password) : "";
+
+            // Create the user account
+            const newUser = await this.repository.save(
+                Builder<Credential>()
+                    .username(payload.username)
+                    .password(encryptedPassword)
+                    .facebookHash(payload.facebookHash)
+                    .googleHash(payload.googleHash)
+                    .mail(payload.mail)
+                    .build()
+            );
+
+            // Automatically create a profile for the user
+            const newProfilPayload: ProfilCreatePayload = {
+                credential_id: newUser.credential_id,
+                photo_de_profil: '',
+                description: '',
+                statut: '',
+                nom: '',
+                prenom: '',
+                email: newUser.mail,
+            };
+
+            const newProfil = await this.profilService.create(newUser, newProfilPayload);
+
+            return newUser;
         } catch (e) {
             throw new SignupException();
         }

@@ -19,7 +19,7 @@ export class Commentaire {
     credential_id: string;
 
 
-    @ManyToOne(() => Publication, {eager: true})
+    @ManyToOne(() => Publication, {eager: true, onDelete: "CASCADE"})
     @JoinColumn({referencedColumnName: 'id_publication', name: 'id_publication'})
     id_publication: string;
 }

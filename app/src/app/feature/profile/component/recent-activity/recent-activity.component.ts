@@ -1,8 +1,10 @@
 import {Component, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { faBell, faBullhorn, faScissors, faVideo, faMagnifyingGlass, faHouse,
+import {
+  faBell, faBullhorn, faScissors, faVideo, faMagnifyingGlass, faHouse,
   faTv, faStore, faUser, faListUl, faMessage, faMoon, faFaceGrin, faImage, faUserGroup,
-  faEllipsis, faThumbsUp, faShare, faFaceSmile, faMagnifyingGlassArrowRight, faCamera, faNoteSticky} from "@fortawesome/free-solid-svg-icons";
+  faEllipsis, faThumbsUp, faShare, faFaceSmile, faMagnifyingGlassArrowRight, faCamera, faNoteSticky, faNewspaper
+} from "@fortawesome/free-solid-svg-icons";
 import {ApiService} from "../../../../shared/api/service/api.service";
 import {TokenService} from "../../../../shared/api/model/token.service";
 import {Router} from "@angular/router";
@@ -12,11 +14,13 @@ import {CommentaireService} from "../../../service/comment/commentaire.service";
 import {LikeService} from "../../../service/like/like.service";
 import {PublicationService} from "../../../service/publication/publication.service";
 import {PublicationListComponent} from "../../../publication/page/publication-list/publication-list.component";
+import {SignInService} from "../../../../security/service/sign-in/sign-in.service";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @Component({
   selector: 'app-recent-activity',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FontAwesomeModule],
   templateUrl: './recent-activity.component.html',
   styleUrls: ['./recent-activity.component.scss']
 })
@@ -38,6 +42,7 @@ export class RecentActivityComponent {
   readonly commentaireService: CommentaireService = inject(CommentaireService);
   readonly likeService: LikeService = inject(LikeService);
   readonly publicationService: PublicationService = inject(PublicationService);
+  readonly signInService: SignInService = inject(SignInService);
 
   // Date
   // Fonction pour calculer la durée écoulée depuis la création du message
@@ -65,7 +70,7 @@ export class RecentActivityComponent {
 
   logOut(): void {
     console.log('Fonction logOut() appelée');
-    this.tokenService.setToken({ token: '', refreshToken: '', isEmpty: true });
+    this.signInService.logOut();
     this.router.navigate(["account/", AppNode.SIGN_IN]).then();
   }
 
@@ -74,4 +79,8 @@ export class RecentActivityComponent {
   }
 
   protected readonly PublicationListComponent = PublicationListComponent;
+  protected readonly faCamera = faCamera;
+  protected readonly faNewspaper = faNewspaper;
+  protected readonly faThumbsUp = faThumbsUp;
+  protected readonly faMessage = faMessage;
 }

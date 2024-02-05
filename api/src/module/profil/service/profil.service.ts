@@ -10,9 +10,11 @@ import {ProfilUpdatePayload} from "../payload/profil-update.payload";
 import {SecurityService} from "../../../security/service/security.service";
 import {Credential} from "../../../security/model/entity/credential.entity";
 
-export class ProfilService {constructor(@InjectRepository(Profil) private readonly repository:
-                                            Repository<Profil>, @InjectRepository(Credential)
-private readonly credentialRepository: Repository<Credential>,  private readonly securityService: SecurityService) {}
+export class ProfilService {constructor(
+    @InjectRepository(Profil) private readonly repository: Repository<Profil>,
+    @InjectRepository(Credential) private readonly credentialRepository: Repository<Credential>,
+    // Ajoutez d'autres dépendances si nécessaire
+) {}
     async create(user:Credential, payload: ProfilCreatePayload): Promise<Profil> {
         //try {
             const newProfil = Object.assign(new Profil(), Builder<Profil>()
@@ -52,8 +54,8 @@ private readonly credentialRepository: Repository<Credential>,  private readonly
         }
     }
 
-    async detailCredential(id: string): Promise<Profil> {
-        const result = await this.repository.findOneBy({credential_id: id});
+    async detailCredential(user:Credential): Promise<Profil> {
+        const result = await this.repository.findOneBy({credential_id: user.credential_id});
         if (!(isNil(result))) {
             return result;
         }
@@ -84,10 +86,6 @@ private readonly credentialRepository: Repository<Credential>,  private readonly
 
             if (payload.prenom !== undefined) {
                 detail.prenom = payload.prenom;
-            }
-
-            if (payload.email !== undefined) {
-                detail.email = payload.email;
             }
 
             return await this.repository.save(detail);

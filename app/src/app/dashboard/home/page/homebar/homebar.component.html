@@ -1,7 +1,8 @@
 
 
 <div class="mainn">
-  <div class="logo">
+  <div class="logo" (click)="redirectHome()">
+  <img src="assets/image/logo.png">
 
 
   </div>
@@ -15,7 +16,6 @@
     <i class="fa-solid fa-tv"><fa-icon [icon]="faTv"></fa-icon></i>
     <i class="fa-solid fa-store"><fa-icon [icon]="faStore"></fa-icon></i>
     <i class="fa-solid fa-users"><fa-icon [icon]="faUser"></fa-icon></i>
-
   </div>
 
   <div class="right">
@@ -24,7 +24,8 @@
     <i class="fa-brands fa-facebook-messenger"><fa-icon [icon]="faMessage"></fa-icon></i>
     <i class="fa-solid fa-bell"><fa-icon [icon]="faBell"></fa-icon></i>
     <i class="fa-solid fa-moon"><fa-icon [icon]="faMoon"></fa-icon></i>
-    <img src="assets/image/user.jpg">
-
+    <ng-container *ngIf="profilService.Detail$() as profil">
+    <img src="assets/image/{{profil.photo_de_profil}}"  (click)="redirectProfile()">
+    </ng-container>
   </div>
 </div>
