@@ -27,6 +27,6 @@ export class Publication {
   @Column()
   type_de_publication: string; // Peut-être un enum serait approprié ici (texte, image, vidéo, lien, etc.)
 
-    @OneToMany()
-    comments:Commentaire[]
+  @OneToMany(() => Commentaire, (commentaire) => commentaire.id_commentaire)
+  comments: Commentaire[];
 }
