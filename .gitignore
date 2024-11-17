@@ -1,1 +1,2 @@
-.idea
+# Ignore JetBrains IDE files
+.idea/
