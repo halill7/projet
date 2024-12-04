@@ -1,6 +1,7 @@
 export enum AppNode {
   AUTHENTICATED = 'dashboard',
   PROFIL = 'dashboard/profil',
+  NOTIFICATION = 'dashboard/notification',
   PUBLIC = 'account',
   REDIRECT_TO_PUBLIC = AppNode.PUBLIC,
   REDIRECT_TO_AUTHENTICATED = AppNode.AUTHENTICATED,

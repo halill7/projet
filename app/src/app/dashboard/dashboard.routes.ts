@@ -22,6 +22,11 @@ export const dashboardRoutes: Routes = [
           .then(c => c.profilRoutes)
       },
       {
+        path: 'notification',
+        loadChildren: () => import('../feature/notification/notification.route')
+          .then(c => c.notificationRoutes)
+      },
+      {
         path: 'member/detail/:id',
         loadComponent: () => import('./feature/member/page/member-detail-page/member-detail-page.component')
           .then(c => c.MemberDetailPageComponent)

@@ -22,7 +22,7 @@
 
     <i class="fa-solid fa-list-ul"><fa-icon [icon]="faListUl"></fa-icon></i>
     <i class="fa-brands fa-facebook-messenger"><fa-icon [icon]="faMessage"></fa-icon></i>
-    <i class="fa-solid fa-bell"><fa-icon [icon]="faBell"></fa-icon></i>
+    <i (click)="redirectNotif()"class="fa-solid fa-bell"><fa-icon [icon]="faBell"></fa-icon></i>
     <i class="fa-solid fa-moon"><fa-icon [icon]="faMoon"></fa-icon></i>
     <ng-container *ngIf="profilService.Detail$() as profil">
     <img src="assets/image/{{profil.photo_de_profil}}"  (click)="redirectProfile()">

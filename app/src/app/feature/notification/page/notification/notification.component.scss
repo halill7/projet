@@ -1,0 +1,164 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 10px;
+  justify-content: space-between;
+  align-items: start;
+  padding: 10px;
+  background: #f5f5f5;
+}
+
+
+
+.left, .center, .right {
+  display: flex;
+  align-items: flex-start;
+}
+
+.left {
+  /* Ajustez selon vos besoins */
+}
+
+
+
+.center{
+
+}
+
+.center i{
+  margin: 0 45px 0 45px;
+  font-size: 22px;
+}
+
+.center i:hover{
+  color: #45abff;
+  cursor: pointer;
+}
+
+.right{
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.right i{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #efefef;
+  line-height: 35px;
+  padding-left: 8px;
+  font-size: 18px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.leftt .search_bar{
+
+}
+
+.leftt .search_bar i{
+
+
+}
+
+.leftt .search_bar input{
+
+}
+
+.center i {
+  font-size: 18px; /* Ajustez selon vos besoins */
+}
+
+.right i, .right img {
+  font-size: 16px; /* Ajustez selon vos besoins */
+}
+.right img{
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  margin-left: 8px;
+  line-height: 45px;
+  cursor: pointer;
+}
+
+
+.profile-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#edit-form {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: #fff;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+h1 {
+  color: #333;
+}
+
+span {
+  color: #777;
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+  .profile-container {
+    width: 80%;
+  }
+}
+
+
+
+/* ... Autres styles ... */

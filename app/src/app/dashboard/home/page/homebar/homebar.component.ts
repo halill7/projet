@@ -32,6 +32,9 @@ export class HomebarComponent {
     this.router.navigate([AppNode.AUTHENTICATED]).then();
   }
 
+  redirectNotif() {
+    this.router.navigate([AppNode.NOTIFICATION]).then();
+  }
   redirectProfile() {
     this.router.navigate([AppNode.PROFIL]).then();
   }
